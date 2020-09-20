@@ -13,35 +13,35 @@ https://github.com/head4ths/CEI
 
 
 
-
-### 200920 스크랩 소스 깃허브에 넣기 
-
-
-
-### 200920 데이터 파일 중간 저장 깃허브 data 폴더에 해보기 
-
-
-
-### 200920 스크랩 해서 깃허브 data 폴더에 넣는 것 (폴더 따로 해서) 해보기
-
-
-
+--------------------
 
 
 --------------------
 
 
 
+
+
+
+### 200920 데이터 파일 중간 저장 깃허브 data 폴더에 해보기 
+
+### 200920 스크랩 해서 깃허브 data 폴더에 넣는 것 (폴더 따로 해서) 해보기
+
+
+### 200920 크롤링 참조 
+https://jeongwookie.github.io/2019/03/18/190318-naver-finance-data-crawling-using-python/
+
+
 ### 555 모델 중간 저장 - 텐서 플로우 
+- 참조1
 https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko
 https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko#scrollTo=mQF_dlgIVOvq
 
-
-
-- 따라해보기 1
+- 참조2 
 http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
 
-- 따라해보기 2https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko
+- 참조3
+https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko
 
 
 
@@ -50,10 +50,208 @@ http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo
 
 
 
+### 200920 github 에 csv write 하는 방법 
+: 알아보기 >>> 일단 보류 mariaDB 가 되면 그게 더 나음
+
+https://gist.github.com/ifightcrime/f9cae5a568656897041e
+
+# csv save on github upload
+https://stackoverflow.com/questions/46866077/how-to-upload-csv-files-to-github-repo-and-use-them-as-data-for-my-r-scripts
+
+# Dataverse csv upload
+https://projects.iq.harvard.edu/odap/frequently-asked-questions
 
 
 =====================================================================================================================
 (완료) 
+
+### 200920 NAS MariaDB 접속
+	## http://himchan1185.synology.me:5000/
+	
+	## MariaDB 유저
+	cei / Mrs너구리1!
+	
+	## Command
+	# 집PC, 외부 (외부망)
+	mysql -u cei -p -h 121.128.223.185 --port 3307 //OK
+	# 노트북 (내부망)
+	mysql -u cei -p -h 172.30.1.35 --port 3307    //OK : 노트북
+
+
+
+### 200920 NAS 포트포워딩 설정 (외부IP로 특정 포트 접속시 특정 내부IP 장비로 포워딩)
+
+
+선택	소스IP 주소	소스포트	외부포트	내부 IP 주소	내부 포트	프로토콜	설명	플래그
+		-	5000-5000	172.30.1.35	5000-5000	TCP		
+		-	5001-5001	172.30.1.35	5001-5001	TCP		
+		-	21-21	172.30.1.35	21-21	TCP		
+		-	3307-3307	172.30.1.35	3307-3307	TCP		
+		-	5005-5005	172.30.1.35	5005-5005	TCP		
+		-	5006-5006	172.30.1.35	5006-5006	TCP		
+		-	80-80	172.30.1.35	80-80	TCP		
+		-	60003-60003	172.30.1.35	60003-60003	TCP	
+		
+		## 외부접속 
+		121.128.223.185:5000
+		121.128.223.185:3307
+
+		172.30.1.35:5000
+		172.30.1.35:3307
+
+
+		## NAS 장비 
+		http://172.30.1.35:5000/
+
+		172.30.1.35:5000
+		# 외부망 접속 
+		https://swimdrg.tistory.com/8
+
+		## 와이파이 
+		172.30.1.254
+
+
+		## 노트북 
+		시스템 정보
+		장비명	홈허브
+		모델명/제조사	TI04-708H / allRadio
+		버전	1.2.7
+		날짜/시간	September 20 21:58:41 2020
+		시스템업타임	2 Hour(s) 12 Minute(s) 55 Second(s) Elapsed
+		메모리사용량	60.35%
+		CPU사용량	1분: 3.50% / 5분: 3.00% / 15분: 2.72%
+		대표 MAC 주소	00:07:89:C2:8C:96
+		인터넷 연결정보
+		인터페이스	WAN
+		IP 할당 방식	DHCP
+		IP주소	121.128.223.185
+		서브넷마스크	255.255.255.0
+		게이트웨이	121.128.223.254
+		기본 DNS	168.126.63.1
+		보조 DNS	168.126.63.2
+		LAN 연결 정보
+		IP 할당 정책	kt모드
+		DHCP 서버	활성
+		IP 주소	172.30.1.254
+		서브넷마스크	255.255.255.0
+		코넷 DHCP IP 범위	172.30.1.1 - 172.30.1.60
+		프리미엄 DHCP IP 범위	172.30.1.128 - 172.30.1.148
+		DHCP 임대시간 (sec)	3600
+
+		## 200920 Mysql 접속
+		https://hannom.tistory.com/113
+		IPv4 주소 . . . . . . . . . : 172.30.1.54 (노트북) 
+		IPv4 게이트웨이 . . . . . . . . . : 172.30.1.254 (노트북) 
+
+		IPv4 주소 . . . . . . . . . : 121.128.227.139 (집PC)
+		http://homehub.olleh.com:8899/nat/portfwd
+
+		   연결별 DNS 접미사. . . . : kornet
+		   링크-로컬 IPv6 주소 . . . . : fe80::21f6:b6a6:1043:db30%6
+		   IPv4 주소 . . . . . . . . . : 121.128.227.139
+		   서브넷 마스크 . . . . . . . : 255.255.255.0
+		   기본 게이트웨이 . . . . . . : 121.128.227.254
+
+		C:\WINDOWS\System32>mysql -u cei -p -h 172.30.1.54 --port 3307
+		Enter password: ***********
+		ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
+		시놀로지 mariaDB ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
+
+		## http://172.30.1.35/phpMyAdmin/ 
+
+
+		## https://devks.tistory.com/2
+
+
+		## 노트북에서 연결 성공함 
+		172.30.1.35 //OK
+		172.30.1.54
+		3307 
+
+		mysql -u cei -p -h 121.128.227.185 --port 3307
+
+		mysql -u cei -p -h 172.30.1.35 --port 3307 //OK : 노트북
+
+		## 외부에서 해보기 
+
+
+		## 200920 mariaDB pandas 연동해보기 
+
+		## 집 PC 에서 해보기 
+		# KT 와이파이 구성
+		https://quasarzone.com/bbs/qb_tip/views/21528
+		192.168.0.1
+
+		# KT PC 공유기 DDNS
+
+
+		# tcping
+		C:\>tcping -d -s 121.128.227.139 3307
+
+		2020:09:20 21:41:55 Probing 172.30.1.35:3307/tcp - No response - time=2007.774ms
+		2020:09:20 21:41:57 Probing 172.30.1.35:3307/tcp - No response - time=2007.982ms
+		2020:09:20 21:41:59 Probing 172.30.1.35:3307/tcp - No response - time=2014.208ms
+		2020:09:20 21:42:01 Probing 172.30.1.35:3307/tcp - No response - time=2002.515ms
+
+		Ping statistics for 172.30.1.35:3307
+			 4 probes sent.
+			 0 successful, 4 failed.  (100.00% fail)
+		Was unable to connect, cannot provide trip statistics.
+
+		C:\>
+
+### 200920 MariaDB 10 
+## 참고 
+# Synology Nas에서 MariaDB 서버 처음부터 끝까지 설치하기
+https://redapply.tistory.com/entry/Synology-%EC%97%90%EC%84%9C-MariaDB-%EC%84%9C%EB%B2%84-%EC%84%A4%EC%B9%98-%ED%95%9C%EB%B2%88%EC%97%90-%EB%81%9D%EA%B9%8C%EC%A7%80-%ED%95%98%EA%B8%B0
+
+# KT 공유기 포트 포워딩 
+https://m.blog.naver.com/PostView.nhn?blogId=zetezz&logNo=221224911338&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+
+# 시놀로지 마리아DB 외부접속
+https://lotus77.tistory.com/40
+
+# CentOS 7 에 MariaDB 10 설치하기
+https://blog.miyam.net/86
+
+## MariaDB 10 
+root / Mrs너구리1!
+3307
+
+# KT 포트포워딩 
+https://m.blog.naver.com/PostView.nhn?blogId=zetezz&logNo=221224911338&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+IPv4 주소 . . . . . . . . . : 172.30.1.54 (노트북) 
+IPv4 주소 . . . . . . . . . : 121.128.227.139 (집PC)
+http://homehub.olleh.com:8899/nat/portfwd
+
+## phpMyAdmin
+https://www.clien.net/service/board/cm_nas/12411854
+ 공인ip/phpMyAdmin/
+포트포워딩 해야 접속 가능할 듯 
+https://himchan1185.synology.me:60004/phpMyAdmin/
+https://himchan1185.synology.me:60003/phpMyAdmin/
+121.128.227.139
+포트포워딩 해야 접속 가능할 듯 
+http://172.30.1.35/phpMyAdmin/ 
+노트북으로는 접속 성공함 
+
+http://172.30.1.35/phpMyAdmin/db_structure.php?server=1&db=cei&table=test
+
+
+## phpMyAdmin
+유저생성 
+cei / Mrs너구리1!
+
+mysql -u cei -p -h 172.30.1.54 --port 3307
+mysql -u cei -p -h 172.30.1.54 --port 3307
+
+C:\WINDOWS\System32>mysql -u cei -p -h 172.30.1.54 --port 3307
+Enter password: ***********
+ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
+
+
+### 200920 스크랩 소스 깃허브에 넣기 
+
 
 ### 깃허브 만들기 
 커뮤니티 감정 인덱스
