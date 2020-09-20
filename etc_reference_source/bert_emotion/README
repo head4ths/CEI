@@ -1,0 +1,37 @@
+
+# 실행방법 
+	https://github.com/head4ths/NLP.git
+	NLP_PJ_615K_GROUP5.ipynb
+	NLP_PJ_615E_GROUP5.ipynb
+	
+	구글 Colab에서 
+	GPU 를 할당 받은 Runtime 으로 실행한다. 	
+	
+	(상단의 Open in Colab 버튼을 누르면 구글코랩으로 연결 됩니다)
+
+
+# 참고자료
+	Huggingface 사의 Pretrained BERT 를 이용하여 전이학습을 수행하였다. 
+	토크나이징 및 Pretrained 모델의 활용과 관련하여 
+	아래 링크의 허깅 페이스사 메뉴얼을 참조하였다. 
+	
+	https://huggingface.co/transformers/main_classes/tokenizer.html
+
+
+# 참고문헌
+    [1] Jacob Devlin, BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
+    [2] Huggingface.Inc.Transformer https://huggingface.co/transformers/main_classes/tokenizer.html
+    [3] Muhammad AbdulMageed and Lyle Ungar. EmoNet: Fine-Grained Emotion Detection with Gated Recurrent Neural Networks
+    [4] Elvis Saravia, Hsien-Chi Toby Liu, Yen-Hao Huang, Junlin Wu, Yi-Shin Chen, CARER: Contextualized Affect Representations for Emotion Recognition
+
+
+# 자연어 처리 5조 조원 
+	박준하, 장성섭, 권형우, 이성준
+	고려대 디지털융합금융학과 2기
+	head4ths@gmail.com
+
+	Junha Park, Sungseop Chang, Hyungwoo Kwon, Sungjun Lee
+	Korea University, Digital Finance Convergence Engineering
+
+
+
