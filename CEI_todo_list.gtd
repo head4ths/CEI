@@ -7,13 +7,60 @@ https://github.com/head4ths/CEI
 /model                   모델 넣는 곳
 /etc_reference_html      참고용 html 넣는 곳 
 /etc_reference_source    참고용 소스 넣는 곳 
-
-
 */ 
 
 
 
+$$$
+### 201003 002 스크랩 해서 dataframe 만들어 보기  v3
+	/*
+	: 필요한 부분만 list 로 뽑기 
+		시각   : 2020.10.03 11:26
+		제목   : 부광에서 왔습니다
+		내용   : fill content at the next step 
+		링크   : /item/board_read.nhn?code=019170&amp;nid=145679220&amp;st=&amp;sw=&amp;page=1
+		조회수 : 90
+		공감   : 4 
+		비공감 : 0 
+	*/
+	//### 참조 국민청원
+	https://colab.research.google.com/github/huisung/president_go_kr_petitions_scraping/blob/master/get_petition.ipynb#scrollTo=T7v_K1bAgNtJ
+	
+	//: 함수형으로 만들기 	
+	//: dataframe 형식으로 담기 		
+	//: dataframe 제목 달기 		
+	//: 클릭해서 들어가는 페이지 내용도 가져와보기 (해당 URL 주고 loop 돌려 찾기?)
+	//: v4 컨텐츠 가져오기도 함수화 시키기 		
+	: v5 selenium 등 부분 안쓰면 지우기 
+	: 두번째 페이지도 담아보기_숫자변수 처리	
+
+
+
+
 --------------------
+
+
+
+### 201003 010 mariaDB 에 저장하기 
+	# 원본 : (날짜,종목,seq) Text
+	# 통계 : (날짜,종목) 글 수, 긍정비율 
+	: mariaDB 테이블 만들기 	
+	: mariaDB 랑 연동해서 담아보기_중복된것 있으면 PK기준 덮어쓰기 	
+
+
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 
+
+
+### 201003 030 mariaDB 에 저장된 것 가져와서 감정분석
+	: 저장된 데이터 dataframe 으로 불러오기 
+	
+
+### 201003 040 상관관계 분석
+	: 글의 갯수, 감정분석 
+	: 주가, 거래량, 투자자별 매매동향 
+
+
+
 
 
 --------------------
@@ -64,6 +111,65 @@ https://projects.iq.harvard.edu/odap/frequently-asked-questions
 
 =====================================================================================================================
 (완료) 
+
+
+### 201003 002 스크랩 해서 dataframe 만들어 보기  v2	
+	//: 게시판 글 부분만 뽑아내기 : 앞부분 자르기
+	//: 게시판 글 부분만 뽑아내기 : 뒷부분 자르기
+	//	:  href="/item/board_read.nhn 아닌것 골라내기
+
+### 201003 002 스크랩 해서 dataframe 만들어 보기  v1
+	# 신풍제약	019170  : 제2의 신풍을 찾아보자
+		https://finance.naver.com/item/board.nhn?code=019170&page=1
+		https://finance.naver.com/item/board.nhn?code=019170&page=2
+		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675817&st=&sw=&page=8
+		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675611&st=&sw=&page=9
+		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675609&st=&sw=&page=9
+		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675261&st=&sw=&page=1
+		
+		https://m.blog.naver.com/PostView.nhn?blogId=timtaeil&logNo=221420471952&categoryNo=30&proxyReferer=https:%2F%2Fwww.google.com%2F
+		
+		============================================================
+		<tr align="center" onmouseout="mouseOut(this)" onmouseover="mouseOver(this)">
+		<td><span class="tah p10 gray03">2020.10.03 11:40</span></td>
+		<td class="title">
+		<a href="/item/board_read.nhn?code=019170&amp;nid=145679533&amp;st=&amp;sw=&amp;page=1" onclick="return singleSubmitCheck();" title="셀트랑 신풍 둘다 승인되지 않을까?">셀트랑 신풍 둘다 승인되지 않을까?
+						<span class="tah p9" style="color:#639933">[<b>4</b>]</span>
+		<img height="10" src="https://ssl.pstatic.net/imgstock/images5/new.gif" width="10"/></a></td>
+		<td class="p11">
+						seoh****
+					</td>
+		<td><span class="tah p10 gray03">99</span></td>
+		<td><strong class="tah p10 red01">9</strong></td>
+		<td><strong class="tah p10 blue01">1</strong></td>
+		</tr>		
+	
+		http://hleecaster.com/python-web-crawling-with-beautifulsoup/
+		http://hleecaster.com/narajangteo-crawling/
+		
+		https://stackoverflow.com/questions/40760441/exclude-unwanted-tag-on-beautifulsoup-python
+		
+		https://jungwoon.github.io/python/crawling/2018/04/12/Crawling-2/
+		
+		
+		
+	
+	# KODEX 200선물인버스2X	252670 : 특정종목이 아닌 전체 흐름 
+
+
+
+### 201003 001 어디 스크랩 할지 정하기 
+	DC? >>> 너무 뻘글 - 노이즈가 많음 
+	팍스넷? 
+	네이버 인버스?
+
+	네이버 - 신풍제약 
+	개인매수 상위종목 - 인기검색종목 
+
+	# NAVER 인기검색종목 (글이 많은 것) 
+		신풍제약	019170 
+		KODEX 200선물인버스2X	252670
+
 
 ### 200920 NAS MariaDB 접속
 	## http://himchan1185.synology.me:5000/
