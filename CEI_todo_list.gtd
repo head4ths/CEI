@@ -11,42 +11,20 @@ https://github.com/head4ths/CEI
 
 
 
-$$$
-### 201003 002 스크랩 해서 dataframe 만들어 보기  v3
-	/*
-	: 필요한 부분만 list 로 뽑기 
-		시각   : 2020.10.03 11:26
-		제목   : 부광에서 왔습니다
-		내용   : fill content at the next step 
-		링크   : /item/board_read.nhn?code=019170&amp;nid=145679220&amp;st=&amp;sw=&amp;page=1
-		조회수 : 90
-		공감   : 4 
-		비공감 : 0 
-	*/
-	//### 참조 국민청원
-	https://colab.research.google.com/github/huisung/president_go_kr_petitions_scraping/blob/master/get_petition.ipynb#scrollTo=T7v_K1bAgNtJ
-	
-	//: 함수형으로 만들기 	
-	//: dataframe 형식으로 담기 		
-	//: dataframe 제목 달기 		
-	//: 클릭해서 들어가는 페이지 내용도 가져와보기 (해당 URL 주고 loop 돌려 찾기?)
-	//: v4 컨텐츠 가져오기도 함수화 시키기 		
-	: v5 selenium 등 부분 안쓰면 지우기 
-	: 두번째 페이지도 담아보기_숫자변수 처리	
 
+
+
+$$$
+### 201003 010 mariaDB 에 저장하기 
+	# 원본 : (날짜,종목,seq) Text
+	# 통계 : (날짜,종목) 글 수, 긍정비율 
+	: v7 mariaDB 테이블 만들기 	
+	: v8 mariaDB 랑 연동해서 담아보기
+	: v9 중복된것 있으면 PK기준 덮어쓰기 	
 
 
 
 --------------------
-
-
-
-### 201003 010 mariaDB 에 저장하기 
-	# 원본 : (날짜,종목,seq) Text
-	# 통계 : (날짜,종목) 글 수, 긍정비율 
-	: mariaDB 테이블 만들기 	
-	: mariaDB 랑 연동해서 담아보기_중복된것 있으면 PK기준 덮어쓰기 	
-
 
 ### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 
 
@@ -109,8 +87,35 @@ https://stackoverflow.com/questions/46866077/how-to-upload-csv-files-to-github-r
 https://projects.iq.harvard.edu/odap/frequently-asked-questions
 
 
+
+
 =====================================================================================================================
 (완료) 
+
+
+
+
+### 201003 002 스크랩 해서 dataframe 만들어 보기  v3
+	/*
+	: 필요한 부분만 list 로 뽑기 
+		시각   : 2020.10.03 11:26
+		제목   : 부광에서 왔습니다
+		내용   : fill content at the next step 
+		링크   : /item/board_read.nhn?code=019170&amp;nid=145679220&amp;st=&amp;sw=&amp;page=1
+		조회수 : 90
+		공감   : 4 
+		비공감 : 0 
+	*/
+	//### 참조 국민청원
+	https://colab.research.google.com/github/huisung/president_go_kr_petitions_scraping/blob/master/get_petition.ipynb#scrollTo=T7v_K1bAgNtJ
+	
+	//: 함수형으로 만들기 	
+	//: dataframe 형식으로 담기 		
+	//: dataframe 제목 달기 		
+	//: 클릭해서 들어가는 페이지 내용도 가져와보기 (해당 URL 주고 loop 돌려 찾기?)
+	//: v4 컨텐츠 가져오기도 함수화 시키기 		
+	//: v5 selenium 등 부분 안쓰면 지우기 
+	//: v6 여러페이지 loop 로 받아오기	
 
 
 ### 201003 002 스크랩 해서 dataframe 만들어 보기  v2	
