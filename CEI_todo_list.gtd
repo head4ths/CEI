@@ -11,26 +11,16 @@ https://github.com/head4ths/CEI
 
 
 
-
 $$$
-### 201009 로컬로 노트북에서 1번 소스 파이썬으로 돌려보고 시간재기 (로컬 수행)
-: 주피터 노트북 
+### 201009 소스 정리하고 종목별로 나누기 
 
-: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
-: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
-
-
-$$$
-### 201009 로컬로 데스크탑에서 1번 소스 파이썬으로 돌려보고 시간재기 (로컬 수행)
-: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
-: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
 
 
 $$$
 ### 201009 오늘 밤에 자기 전에 데스크탑으로 돌려 놓고 데이터 대량으로 모으기
 : 꼭 한번에 다 받을 필요없음. 끊어서 받아와서 합쳐도 됨 
-# 122630    KODEX 레버리지
-# 252670    KODEX 200선물인버스2X
+# 122630    KODEX레버리지
+# 252670    KODEX200선물인버스2X
 # 019170    신풍제약
 # 005930    삼성전자
 
@@ -109,6 +99,27 @@ https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/k
 (완료)
 
 
+
+
+### 201009 로컬로 데스크탑에서 1번 소스 파이썬으로 돌려보고 시간재기 (로컬 수행)
+: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
+: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
+
+
+
+### 201009 로컬로 노트북에서 1번 소스 파이썬으로 돌려보고 시간재기 (로컬 수행)
+: 주피터 노트북 
+
+: 속도는 거의 똑같음. 
+
+: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
+: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
+https://stackoverflow.com/questions/29858752/error-message-chromedriver-executable-needs-to-be-available-in-the-path
+driver = webdriver.Chrome('/path/to/chromedriver') 
+driver = webdriver.Chrome("C:/Users/michael/Downloads/chromedriver_win32/chromedriver.exe")
+
+# How To Make Selenium WebDriver Scripts Faster
+https://seleniumjava.com/2015/12/12/how-to-make-selenium-webdriver-scripts-faster/
 
 
 
