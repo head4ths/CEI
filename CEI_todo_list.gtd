@@ -2,48 +2,68 @@
 ## 깃허브
 https://github.com/head4ths/CEI
 
-# 깃허브 폴더 
+# 깃허브 폴더
 /data                    데이터 파일 넣는 곳
 /model                   모델 넣는 곳
-/etc_reference_html      참고용 html 넣는 곳 
-/etc_reference_source    참고용 소스 넣는 곳 
-*/ 
-
-
+/etc_reference_html      참고용 html 넣는 곳
+/etc_reference_source    참고용 소스 넣는 곳
+*/
 
 
 
 
 $$$
-### 201009 010 mariaDB 에 저장하기 # 소스 찾아보기 
-	: Google colab mariadb conn
-	
-	
+### 201009 로컬로 노트북에서 1번 소스 파이썬으로 돌려보고 시간재기 (로컬 수행)
+: 주피터 노트북 
+
+: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
+: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
+
 
 $$$
-### 201009 010 mariaDB 에 저장하기 # v7 mariaDB 테이블 만들기 	
-	# 원본 : (날짜,종목,seq) Text
-	# 통계 : (날짜,종목) 글 수, 긍정비율 
-	
-	
-$$$
-### 201009 010 mariaDB 에 저장하기 # v8 mariaDB 랑 연동해서 담아보기
+### 201009 로컬로 데스크탑에서 1번 소스 파이썬으로 돌려보고 시간재기 (로컬 수행)
+: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
+: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
+
 
 $$$
-### 201009 010 mariaDB 에 저장하기 # v9 중복된것 있으면 PK기준 덮어쓰기 	
+### 201009 오늘 밤에 자기 전에 데스크탑으로 돌려 놓고 데이터 대량으로 모으기
+: 꼭 한번에 다 받을 필요없음. 끊어서 받아와서 합쳐도 됨 
+# 122630    KODEX 레버리지
+# 252670    KODEX 200선물인버스2X
+# 019170    신풍제약
+# 005930    삼성전자
+
+: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
+: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
+
+
+
+
+
 
 --------------------
 
-### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 
+
+
+
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기
 
 
 ### 201003 030 mariaDB 에 저장된 것 가져와서 감정분석
-	: 저장된 데이터 dataframe 으로 불러오기 
+    : 저장된 데이터 dataframe 으로 불러와서 감정분석해서 건별로 태그 달기 
+	: 태그 단 것 DB에 저장하기 
 	
 
-### 201003 040 상관관계 분석
-	: 글의 갯수, 감정분석 
-	: 주가, 거래량, 투자자별 매매동향 
+### 201003 040 일자별 인덱스 만들기 
+
+
+### 201009 050 일자별 주가, 일자별 거래량 가져오기 
+
+
+### 201003 060 상관관계 분석
+    : 글의 갯수, 감정분석
+    : 주가, 거래량, 투자자별 매매동향
 
 
 
@@ -54,12 +74,12 @@ $$$
 
 
 
-### 555 모델 중간 저장 - 텐서 플로우 
+### 555 모델 중간 저장 - 텐서 플로우
 - 참조1
 https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko
 https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko#scrollTo=mQF_dlgIVOvq
 
-- 참조2 
+- 참조2
 http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
 
 - 참조3
@@ -67,25 +87,140 @@ https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/k
 
 
 
-### 999 아이디어 
-글의 갯수, 길이 등등도 피쳐로 딥러닝
+
+### 888 발표
+- BERT 가 긍정적인 댓글, 부정적인 댓글 잘 분류해주는 것 샘플로 보여줌 (편집의 힘!)
+
+- BERT로 만들어낸 소문지수가 주가에 선행하는 것을 보여줌  (편집과 좋은 샘플 종목 선택의 힘!)
+
+- 통계적인 글의 양이 거래량에 선행하는 것을 보여줌  (편집과 좋은 샘플 종목 선택의 힘!)
+
+
+### 999 아이디어
+- 글의 갯수, 길이 등등도 피쳐로 딥러닝
+
+- 네이버무비 + 수작업 분류한 것 합쳐서 BERT 전이학습
+
+- 아니면 주가가 내린 날에 올라온 글, 주가가 오른 날 올라온 글로 학습 ? >> 하지만 후행적이지 않을까? 목표는 소문을 먼저 알아내는 것
 
 
 
 =====================================================================================================================
-(완료) 
+(완료)
 
 
 
-### 201003 010 mariaDB 에 저장하기 
-	# 원본 : (날짜,종목,seq) Text
-	# 통계 : (날짜,종목) 글 수, 긍정비율 
-	# v7 mariaDB 테이블 만들기 	
-	# v8 mariaDB 랑 연동해서 담아보기
-	# v9 중복된것 있으면 PK기준 덮어쓰기 	
 
 
-### 200920 github 에 csv write 하는 방법 
+### 201009 010 mariaDB 에 저장하기 # 여러건 수집해보기 (시간, 용량 측정)
+
+# 사이즈 : MySQL 테이블 및 데이타베이스 크기 알아내기
+https://www.lesstif.com/dbms/mysql-17105786.html
+
+SELECT TABLE_NAME AS "Tables",
+round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
+FROM information_schema.TABLES
+WHERE table_schema = 'cei'
+ORDER BY (data_length + index_length) DESC;
+
+0.38 MB : 420개
+SELECT COUNT(*) FROM 신풍제약_20201009;
+
+: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
+: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
+
+
+### 20201009
+SELECT * FROM 신풍제약_20201009
+WHERE DATE LIKE '2020.10.09 19%'
+
+SELECT * FROM TABLES;
+SELECT * FROM TABLES WHERE TABLE_SCHEMA = 'cei';
+
+### 201009 010 mariaDB 에 저장하기 # 저장된 것 다시 불러와서 dataframe 만들기
+https://greendreamtrre.tistory.com/196
+
+indata = pd.read_sql_query("select * from kopo_product_volume", engine)
+indata.head()
+
+
+
+### 201009 010 mariaDB 에 저장하기
+    # 원본 : (날짜,종목,seq) Text
+    # 통계 : (날짜,종목) 글 수, 긍정비율
+
+
+
+
+### 201009 010 mariaDB 에 저장하기 # v7 mariaDB 테이블 만들기
+### 201009 010 mariaDB 에 저장하기 # v8 mariaDB 랑 연동해서 담아보기
+### 201009 010 mariaDB 에 저장하기 # v9 중복된것 있으면 PK기준 덮어쓰기
+    # 원본 : (날짜,종목,seq) Text
+    # 통계 : (날짜,종목) 글 수, 긍정비율
+
+
+### 201009 010 mariaDB 에 저장하기 # 소스 찾아보기
+    : Google colab mariadb conn
+
+    # 파이썬에서 마리아 DB 연결하기
+    https://m.blog.naver.com/smonone/221491863406
+
+    # sqlalchemy와 pandas로 MariaDB에 데이터 insert하기
+    https://yeomkyeorae.github.io/pandas/sqlalchemy/
+
+SQLALCHEMY_DATABASE_URI = 'mysqI+mysqIconnector://yeom：yeom@IocaIhost:3306/price'
+engine = sqlalchemy.create_engine(SQLALCHEMY_DATABASE_URI, echo=FaIse)
+
+from sqlalchemy import create_engine engine = create_engine('mssql+pymssql://username:passwd@host/database', echo=True)
+
+출처: https://excelsior-cjh.tistory.com/77 [EXCELSIOR]
+GRANT ALL PRIVILEGES ON alchemy.* to 'cei'@'%';
+
+SQLALCHEMY_DATABASE_URI =
+
+
+engine = sqlalchemy.create_engine('mysqI+mysqIconnector://cei:Mrssjrnfl1!@121.128.223.185:3307/cei', echo=True)
+
+https://stackoverflow.com/questions/51783313/how-do-i-get-sqlalchemy-create-engine-with-mysqlconnector-to-connect-using-mysql
+
+SELECT * FROM df1_20201009;
+selloutData.to_sql(name=resultname, con=engine, index = False, if_exists='replace')
+use database_name;
+
+use cei;
+
+MariaDB [(none)]> use cei;
+Database changed
+MariaDB [cei]> desc df1_20201009;
++---------+------+------+-----+---------+-------+
+| Field   | Type | Null | Key | Default | Extra |
++---------+------+------+-----+---------+-------+
+| DATE    | text | YES  |     | NULL    |       |
+| ITEM    | text | YES  |     | NULL    |       |
+| TITLE   | text | YES  |     | NULL    |       |
+| CONTENT | text | YES  |     | NULL    |       |
+| READ    | text | YES  |     | NULL    |       |
+| LIKE    | text | YES  |     | NULL    |       |
+| DISLIKE | text | YES  |     | NULL    |       |
+| HREF    | text | YES  |     | NULL    |       |
++---------+------+------+-----+---------+-------+
+8 rows in set (0.009 sec)
+
+
+MariaDB [cei]> select * from df1_20201009;
+
+
+
+
+### 201003 010 mariaDB 에 저장하기
+    # 원본 : (날짜,종목,seq) Text
+    # 통계 : (날짜,종목) 글 수, 긍정비율
+    # v7 mariaDB 테이블 만들기
+    # v8 mariaDB 랑 연동해서 담아보기
+    # v9 중복된것 있으면 PK기준 덮어쓰기
+
+
+### 200920 github 에 csv write 하는 방법
 : 알아보기 >>> 일단 보류 mariaDB 가 되면 그게 더 나음
 
 https://gist.github.com/ifightcrime/f9cae5a568656897041e
@@ -100,236 +235,236 @@ https://projects.iq.harvard.edu/odap/frequently-asked-questions
 
 
 
-### 200920 데이터 파일 중간 저장 깃허브 data 폴더에 해보기 
+### 200920 데이터 파일 중간 저장 깃허브 data 폴더에 해보기
 
 ### 200920 스크랩 해서 깃허브 data 폴더에 넣는 것 (폴더 따로 해서) 해보기
 
-### 200920 크롤링 참조 
+### 200920 크롤링 참조
 https://jeongwookie.github.io/2019/03/18/190318-naver-finance-data-crawling-using-python/
 
 
 ### 201003 002 스크랩 해서 dataframe 만들어 보기  v3
-	/*
-	: 필요한 부분만 list 로 뽑기 
-		시각   : 2020.10.03 11:26
-		제목   : 부광에서 왔습니다
-		내용   : fill content at the next step 
-		링크   : /item/board_read.nhn?code=019170&amp;nid=145679220&amp;st=&amp;sw=&amp;page=1
-		조회수 : 90
-		공감   : 4 
-		비공감 : 0 
-	*/
-	//### 참조 국민청원
-	https://colab.research.google.com/github/huisung/president_go_kr_petitions_scraping/blob/master/get_petition.ipynb#scrollTo=T7v_K1bAgNtJ
-	
-	//: 함수형으로 만들기 	
-	//: dataframe 형식으로 담기 		
-	//: dataframe 제목 달기 		
-	//: 클릭해서 들어가는 페이지 내용도 가져와보기 (해당 URL 주고 loop 돌려 찾기?)
-	//: v4 컨텐츠 가져오기도 함수화 시키기 		
-	//: v5 selenium 등 부분 안쓰면 지우기 
-	//: v6 여러페이지 loop 로 받아오기	
+    /*
+    : 필요한 부분만 list 로 뽑기
+        시각   : 2020.10.03 11:26
+        제목   : 부광에서 왔습니다
+        내용   : fill content at the next step
+        링크   : /item/board_read.nhn?code=019170&amp;nid=145679220&amp;st=&amp;sw=&amp;page=1
+        조회수 : 90
+        공감   : 4
+        비공감 : 0
+    */
+    //### 참조 국민청원
+    https://colab.research.google.com/github/huisung/president_go_kr_petitions_scraping/blob/master/get_petition.ipynb#scrollTo=T7v_K1bAgNtJ
+
+    //: 함수형으로 만들기
+    //: dataframe 형식으로 담기
+    //: dataframe 제목 달기
+    //: 클릭해서 들어가는 페이지 내용도 가져와보기 (해당 URL 주고 loop 돌려 찾기?)
+    //: v4 컨텐츠 가져오기도 함수화 시키기
+    //: v5 selenium 등 부분 안쓰면 지우기
+    //: v6 여러페이지 loop 로 받아오기
 
 
-### 201003 002 스크랩 해서 dataframe 만들어 보기  v2	
-	//: 게시판 글 부분만 뽑아내기 : 앞부분 자르기
-	//: 게시판 글 부분만 뽑아내기 : 뒷부분 자르기
-	//	:  href="/item/board_read.nhn 아닌것 골라내기
+### 201003 002 스크랩 해서 dataframe 만들어 보기  v2
+    //: 게시판 글 부분만 뽑아내기 : 앞부분 자르기
+    //: 게시판 글 부분만 뽑아내기 : 뒷부분 자르기
+    //  :  href="/item/board_read.nhn 아닌것 골라내기
 
 ### 201003 002 스크랩 해서 dataframe 만들어 보기  v1
-	# 신풍제약	019170  : 제2의 신풍을 찾아보자
-		https://finance.naver.com/item/board.nhn?code=019170&page=1
-		https://finance.naver.com/item/board.nhn?code=019170&page=2
-		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675817&st=&sw=&page=8
-		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675611&st=&sw=&page=9
-		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675609&st=&sw=&page=9
-		https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675261&st=&sw=&page=1
-		
-		https://m.blog.naver.com/PostView.nhn?blogId=timtaeil&logNo=221420471952&categoryNo=30&proxyReferer=https:%2F%2Fwww.google.com%2F
-		
-		============================================================
-		<tr align="center" onmouseout="mouseOut(this)" onmouseover="mouseOver(this)">
-		<td><span class="tah p10 gray03">2020.10.03 11:40</span></td>
-		<td class="title">
-		<a href="/item/board_read.nhn?code=019170&amp;nid=145679533&amp;st=&amp;sw=&amp;page=1" onclick="return singleSubmitCheck();" title="셀트랑 신풍 둘다 승인되지 않을까?">셀트랑 신풍 둘다 승인되지 않을까?
-						<span class="tah p9" style="color:#639933">[<b>4</b>]</span>
-		<img height="10" src="https://ssl.pstatic.net/imgstock/images5/new.gif" width="10"/></a></td>
-		<td class="p11">
-						seoh****
-					</td>
-		<td><span class="tah p10 gray03">99</span></td>
-		<td><strong class="tah p10 red01">9</strong></td>
-		<td><strong class="tah p10 blue01">1</strong></td>
-		</tr>		
-	
-		http://hleecaster.com/python-web-crawling-with-beautifulsoup/
-		http://hleecaster.com/narajangteo-crawling/
-		
-		https://stackoverflow.com/questions/40760441/exclude-unwanted-tag-on-beautifulsoup-python
-		
-		https://jungwoon.github.io/python/crawling/2018/04/12/Crawling-2/
-		
-		
-		
-	
-	# KODEX 200선물인버스2X	252670 : 특정종목이 아닌 전체 흐름 
+    # 신풍제약  019170  : 제2의 신풍을 찾아보자
+        https://finance.naver.com/item/board.nhn?code=019170&page=1
+        https://finance.naver.com/item/board.nhn?code=019170&page=2
+        https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675817&st=&sw=&page=8
+        https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675611&st=&sw=&page=9
+        https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675609&st=&sw=&page=9
+        https://finance.naver.com/item/board_read.nhn?code=019170&nid=145675261&st=&sw=&page=1
+
+        https://m.blog.naver.com/PostView.nhn?blogId=timtaeil&logNo=221420471952&categoryNo=30&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+        ============================================================
+        <tr align="center" onmouseout="mouseOut(this)" onmouseover="mouseOver(this)">
+        <td><span class="tah p10 gray03">2020.10.03 11:40</span></td>
+        <td class="title">
+        <a href="/item/board_read.nhn?code=019170&amp;nid=145679533&amp;st=&amp;sw=&amp;page=1" onclick="return singleSubmitCheck();" title="셀트랑 신풍 둘다 승인되지 않을까?">셀트랑 신풍 둘다 승인되지 않을까?
+                        <span class="tah p9" style="color:#639933">[<b>4</b>]</span>
+        <img height="10" src="https://ssl.pstatic.net/imgstock/images5/new.gif" width="10"/></a></td>
+        <td class="p11">
+                        seoh****
+                    </td>
+        <td><span class="tah p10 gray03">99</span></td>
+        <td><strong class="tah p10 red01">9</strong></td>
+        <td><strong class="tah p10 blue01">1</strong></td>
+        </tr>
+
+        http://hleecaster.com/python-web-crawling-with-beautifulsoup/
+        http://hleecaster.com/narajangteo-crawling/
+
+        https://stackoverflow.com/questions/40760441/exclude-unwanted-tag-on-beautifulsoup-python
+
+        https://jungwoon.github.io/python/crawling/2018/04/12/Crawling-2/
 
 
 
-### 201003 001 어디 스크랩 할지 정하기 
-	DC? >>> 너무 뻘글 - 노이즈가 많음 
-	팍스넷? 
-	네이버 인버스?
 
-	네이버 - 신풍제약 
-	개인매수 상위종목 - 인기검색종목 
+    # KODEX 200선물인버스2X  252670 : 특정종목이 아닌 전체 흐름
 
-	# NAVER 인기검색종목 (글이 많은 것) 
-		신풍제약	019170 
-		KODEX 200선물인버스2X	252670
+
+
+### 201003 001 어디 스크랩 할지 정하기
+    DC? >>> 너무 뻘글 - 노이즈가 많음
+    팍스넷?
+    네이버 인버스?
+
+    네이버 - 신풍제약
+    개인매수 상위종목 - 인기검색종목
+
+    # NAVER 인기검색종목 (글이 많은 것)
+        신풍제약    019170
+        KODEX 200선물인버스2X    252670
 
 
 ### 200920 NAS MariaDB 접속
-	## http://himchan1185.synology.me:5000/
-	
-	## MariaDB 유저
-	cei / Mrs너구리1!
-	
-	## Command
-	# 집PC, 외부 (외부망)
-	mysql -u cei -p -h 121.128.223.185 --port 3307 //OK
-	# 노트북 (내부망)
-	mysql -u cei -p -h 172.30.1.35 --port 3307    //OK : 노트북
+    ## http://himchan1185.synology.me:5000/
+
+    ## MariaDB 유저
+    cei / Mrs너구리1!
+
+    ## Command
+    # 집PC, 외부 (외부망)
+    mysql -u cei -p -h 121.128.223.185 --port 3307 //OK
+    # 노트북 (내부망)
+    mysql -u cei -p -h 172.30.1.35 --port 3307    //OK : 노트북
 
 
 
 ### 200920 NAS 포트포워딩 설정 (외부IP로 특정 포트 접속시 특정 내부IP 장비로 포워딩)
 
 
-선택	소스IP 주소	소스포트	외부포트	내부 IP 주소	내부 포트	프로토콜	설명	플래그
-		-	5000-5000	172.30.1.35	5000-5000	TCP		
-		-	5001-5001	172.30.1.35	5001-5001	TCP		
-		-	21-21	172.30.1.35	21-21	TCP		
-		-	3307-3307	172.30.1.35	3307-3307	TCP		
-		-	5005-5005	172.30.1.35	5005-5005	TCP		
-		-	5006-5006	172.30.1.35	5006-5006	TCP		
-		-	80-80	172.30.1.35	80-80	TCP		
-		-	60003-60003	172.30.1.35	60003-60003	TCP	
-		
-		## 외부접속 
-		121.128.223.185:5000
-		121.128.223.185:3307
+선택  소스IP 주소 소스포트    외부포트    내부 IP 주소    내부 포트   프로토콜    설명  플래그
+        -   5000-5000   172.30.1.35 5000-5000   TCP
+        -   5001-5001   172.30.1.35 5001-5001   TCP
+        -   21-21   172.30.1.35 21-21   TCP
+        -   3307-3307   172.30.1.35 3307-3307   TCP
+        -   5005-5005   172.30.1.35 5005-5005   TCP
+        -   5006-5006   172.30.1.35 5006-5006   TCP
+        -   80-80   172.30.1.35 80-80   TCP
+        -   60003-60003 172.30.1.35 60003-60003 TCP
 
-		172.30.1.35:5000
-		172.30.1.35:3307
+        ## 외부접속
+        121.128.223.185:5000
+        121.128.223.185:3307
 
-
-		## NAS 장비 
-		http://172.30.1.35:5000/
-
-		172.30.1.35:5000
-		# 외부망 접속 
-		https://swimdrg.tistory.com/8
-
-		## 와이파이 
-		172.30.1.254
+        172.30.1.35:5000
+        172.30.1.35:3307
 
 
-		## 노트북 
-		시스템 정보
-		장비명	홈허브
-		모델명/제조사	TI04-708H / allRadio
-		버전	1.2.7
-		날짜/시간	September 20 21:58:41 2020
-		시스템업타임	2 Hour(s) 12 Minute(s) 55 Second(s) Elapsed
-		메모리사용량	60.35%
-		CPU사용량	1분: 3.50% / 5분: 3.00% / 15분: 2.72%
-		대표 MAC 주소	00:07:89:C2:8C:96
-		인터넷 연결정보
-		인터페이스	WAN
-		IP 할당 방식	DHCP
-		IP주소	121.128.223.185
-		서브넷마스크	255.255.255.0
-		게이트웨이	121.128.223.254
-		기본 DNS	168.126.63.1
-		보조 DNS	168.126.63.2
-		LAN 연결 정보
-		IP 할당 정책	kt모드
-		DHCP 서버	활성
-		IP 주소	172.30.1.254
-		서브넷마스크	255.255.255.0
-		코넷 DHCP IP 범위	172.30.1.1 - 172.30.1.60
-		프리미엄 DHCP IP 범위	172.30.1.128 - 172.30.1.148
-		DHCP 임대시간 (sec)	3600
+        ## NAS 장비
+        http://172.30.1.35:5000/
 
-		## 200920 Mysql 접속
-		https://hannom.tistory.com/113
-		IPv4 주소 . . . . . . . . . : 172.30.1.54 (노트북) 
-		IPv4 게이트웨이 . . . . . . . . . : 172.30.1.254 (노트북) 
+        172.30.1.35:5000
+        # 외부망 접속
+        https://swimdrg.tistory.com/8
 
-		IPv4 주소 . . . . . . . . . : 121.128.227.139 (집PC)
-		http://homehub.olleh.com:8899/nat/portfwd
-
-		   연결별 DNS 접미사. . . . : kornet
-		   링크-로컬 IPv6 주소 . . . . : fe80::21f6:b6a6:1043:db30%6
-		   IPv4 주소 . . . . . . . . . : 121.128.227.139
-		   서브넷 마스크 . . . . . . . : 255.255.255.0
-		   기본 게이트웨이 . . . . . . : 121.128.227.254
-
-		C:\WINDOWS\System32>mysql -u cei -p -h 172.30.1.54 --port 3307
-		Enter password: ***********
-		ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
-		시놀로지 mariaDB ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
-
-		## http://172.30.1.35/phpMyAdmin/ 
+        ## 와이파이
+        172.30.1.254
 
 
-		## https://devks.tistory.com/2
+        ## 노트북
+        시스템 정보
+        장비명 홈허브
+        모델명/제조사 TI04-708H / allRadio
+        버전  1.2.7
+        날짜/시간   September 20 21:58:41 2020
+        시스템업타임  2 Hour(s) 12 Minute(s) 55 Second(s) Elapsed
+        메모리사용량  60.35%
+        CPU사용량  1분: 3.50% / 5분: 3.00% / 15분: 2.72%
+        대표 MAC 주소   00:07:89:C2:8C:96
+        인터넷 연결정보
+        인터페이스   WAN
+        IP 할당 방식    DHCP
+        IP주소    121.128.223.185
+        서브넷마스크  255.255.255.0
+        게이트웨이   121.128.223.254
+        기본 DNS  168.126.63.1
+        보조 DNS  168.126.63.2
+        LAN 연결 정보
+        IP 할당 정책    kt모드
+        DHCP 서버 활성
+        IP 주소   172.30.1.254
+        서브넷마스크  255.255.255.0
+        코넷 DHCP IP 범위   172.30.1.1 - 172.30.1.60
+        프리미엄 DHCP IP 범위 172.30.1.128 - 172.30.1.148
+        DHCP 임대시간 (sec) 3600
+
+        ## 200920 Mysql 접속
+        https://hannom.tistory.com/113
+        IPv4 주소 . . . . . . . . . : 172.30.1.54 (노트북)
+        IPv4 게이트웨이 . . . . . . . . . : 172.30.1.254 (노트북)
+
+        IPv4 주소 . . . . . . . . . : 121.128.227.139 (집PC)
+        http://homehub.olleh.com:8899/nat/portfwd
+
+           연결별 DNS 접미사. . . . : kornet
+           링크-로컬 IPv6 주소 . . . . : fe80::21f6:b6a6:1043:db30%6
+           IPv4 주소 . . . . . . . . . : 121.128.227.139
+           서브넷 마스크 . . . . . . . : 255.255.255.0
+           기본 게이트웨이 . . . . . . : 121.128.227.254
+
+        C:\WINDOWS\System32>mysql -u cei -p -h 172.30.1.54 --port 3307
+        Enter password: ***********
+        ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
+        시놀로지 mariaDB ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
+
+        ## http://172.30.1.35/phpMyAdmin/
 
 
-		## 노트북에서 연결 성공함 
-		172.30.1.35 //OK
-		172.30.1.54
-		3307 
-
-		mysql -u cei -p -h 121.128.227.185 --port 3307
-
-		mysql -u cei -p -h 172.30.1.35 --port 3307 //OK : 노트북
-
-		## 외부에서 해보기 
+        ## https://devks.tistory.com/2
 
 
-		## 200920 mariaDB pandas 연동해보기 
+        ## 노트북에서 연결 성공함
+        172.30.1.35 //OK
+        172.30.1.54
+        3307
 
-		## 집 PC 에서 해보기 
-		# KT 와이파이 구성
-		https://quasarzone.com/bbs/qb_tip/views/21528
-		192.168.0.1
+        mysql -u cei -p -h 121.128.227.185 --port 3307
 
-		# KT PC 공유기 DDNS
+        mysql -u cei -p -h 172.30.1.35 --port 3307 //OK : 노트북
+
+        ## 외부에서 해보기
 
 
-		# tcping
-		C:\>tcping -d -s 121.128.227.139 3307
+        ## 200920 mariaDB pandas 연동해보기
 
-		2020:09:20 21:41:55 Probing 172.30.1.35:3307/tcp - No response - time=2007.774ms
-		2020:09:20 21:41:57 Probing 172.30.1.35:3307/tcp - No response - time=2007.982ms
-		2020:09:20 21:41:59 Probing 172.30.1.35:3307/tcp - No response - time=2014.208ms
-		2020:09:20 21:42:01 Probing 172.30.1.35:3307/tcp - No response - time=2002.515ms
+        ## 집 PC 에서 해보기
+        # KT 와이파이 구성
+        https://quasarzone.com/bbs/qb_tip/views/21528
+        192.168.0.1
 
-		Ping statistics for 172.30.1.35:3307
-			 4 probes sent.
-			 0 successful, 4 failed.  (100.00% fail)
-		Was unable to connect, cannot provide trip statistics.
+        # KT PC 공유기 DDNS
 
-		C:\>
 
-### 200920 MariaDB 10 
-## 참고 
+        # tcping
+        C:\>tcping -d -s 121.128.227.139 3307
+
+        2020:09:20 21:41:55 Probing 172.30.1.35:3307/tcp - No response - time=2007.774ms
+        2020:09:20 21:41:57 Probing 172.30.1.35:3307/tcp - No response - time=2007.982ms
+        2020:09:20 21:41:59 Probing 172.30.1.35:3307/tcp - No response - time=2014.208ms
+        2020:09:20 21:42:01 Probing 172.30.1.35:3307/tcp - No response - time=2002.515ms
+
+        Ping statistics for 172.30.1.35:3307
+             4 probes sent.
+             0 successful, 4 failed.  (100.00% fail)
+        Was unable to connect, cannot provide trip statistics.
+
+        C:\>
+
+### 200920 MariaDB 10
+## 참고
 # Synology Nas에서 MariaDB 서버 처음부터 끝까지 설치하기
 https://redapply.tistory.com/entry/Synology-%EC%97%90%EC%84%9C-MariaDB-%EC%84%9C%EB%B2%84-%EC%84%A4%EC%B9%98-%ED%95%9C%EB%B2%88%EC%97%90-%EB%81%9D%EA%B9%8C%EC%A7%80-%ED%95%98%EA%B8%B0
 
-# KT 공유기 포트 포워딩 
+# KT 공유기 포트 포워딩
 https://m.blog.naver.com/PostView.nhn?blogId=zetezz&logNo=221224911338&proxyReferer=https%3A%2F%2Fwww.google.com%2F
 
 # 시놀로지 마리아DB 외부접속
@@ -338,32 +473,32 @@ https://lotus77.tistory.com/40
 # CentOS 7 에 MariaDB 10 설치하기
 https://blog.miyam.net/86
 
-## MariaDB 10 
+## MariaDB 10
 root / Mrs너구리1!
 3307
 
-# KT 포트포워딩 
+# KT 포트포워딩
 https://m.blog.naver.com/PostView.nhn?blogId=zetezz&logNo=221224911338&proxyReferer=https%3A%2F%2Fwww.google.com%2F
-IPv4 주소 . . . . . . . . . : 172.30.1.54 (노트북) 
+IPv4 주소 . . . . . . . . . : 172.30.1.54 (노트북)
 IPv4 주소 . . . . . . . . . : 121.128.227.139 (집PC)
 http://homehub.olleh.com:8899/nat/portfwd
 
 ## phpMyAdmin
 https://www.clien.net/service/board/cm_nas/12411854
  공인ip/phpMyAdmin/
-포트포워딩 해야 접속 가능할 듯 
+포트포워딩 해야 접속 가능할 듯
 https://himchan1185.synology.me:60004/phpMyAdmin/
 https://himchan1185.synology.me:60003/phpMyAdmin/
 121.128.227.139
-포트포워딩 해야 접속 가능할 듯 
-http://172.30.1.35/phpMyAdmin/ 
-노트북으로는 접속 성공함 
+포트포워딩 해야 접속 가능할 듯
+http://172.30.1.35/phpMyAdmin/
+노트북으로는 접속 성공함
 
 http://172.30.1.35/phpMyAdmin/db_structure.php?server=1&db=cei&table=test
 
 
 ## phpMyAdmin
-유저생성 
+유저생성
 cei / Mrs너구리1!
 
 mysql -u cei -p -h 172.30.1.54 --port 3307
@@ -374,10 +509,10 @@ Enter password: ***********
 ERROR 2002 (HY000): Can't connect to MySQL server on '172.30.1.54' (10061)
 
 
-### 200920 스크랩 소스 깃허브에 넣기 
+### 200920 스크랩 소스 깃허브에 넣기
 
 
-### 깃허브 만들기 
+### 깃허브 만들기
 커뮤니티 감정 인덱스
 PJ_COMM_EMO_INDEX
 CEI
