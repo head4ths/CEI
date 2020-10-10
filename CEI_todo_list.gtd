@@ -16,15 +16,19 @@ https://github.com/head4ths/CEI
 $$$ 
 ### 201010 part3_모델불러와서_Classification수행.ipynb 
 ## part3_모델불러와서_Classification수행 
-# 불러오기 ( 불러온 걸로 시연 해보기 )
-
-# 앞부분에 모델 갱신시점 확인도 하기 
+# (1) 모델 불러오기 ( 불러온 걸로 시연 해보기 )
+* 앞부분에 모델 갱신시점 확인도 하기 
 !ls -l --block-size=K /content/gdrive/'My Drive'/bert_model_save
 !ls -l --block-size=M /content/gdrive/'My Drive'/bert_model_save/pytorch_model.bin
 
+# (2) dataframe 불러오기 
+* mariaDB 에 저장된 것 가져와서 감정분석
+: 저장된 데이터 dataframe 으로 불러와서 감정분석해서 건별로 태그 달기 
+: 태그 단 것 DB에 저장하기 
+
 # mariaDB 에 저장된 것 가져와서 감정분석
-    : 저장된 데이터 dataframe 으로 불러와서 감정분석해서 건별로 태그 달기 
-	: 태그 단 것 DB에 저장하기 
+: 저장된 데이터 dataframe 으로 불러와서 감정분석해서 건별로 태그 달기 
+: 태그 단 것 DB에 저장하기 
 
 
 
@@ -54,7 +58,6 @@ $$$
 : 주가, 거래량, 투자자별 매매동향 ( 거래소? ) 
 
 
-
 $$$ 
 ### 201010 일자별 주가, 일자별 거래량 가져오기 
 # 거래소 ??? 
@@ -63,9 +66,7 @@ $$$
 
 
 
-
 --------------------
-
 
 
 
