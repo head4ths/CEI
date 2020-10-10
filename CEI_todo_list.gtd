@@ -13,17 +13,6 @@ https://github.com/head4ths/CEI
 
 
 
-
-
-
-
-
-$$$ 
-### 201003 020 Bert 소스 정리 
-## part2_bert감정분석_모델학습및저장 
-	: 검증 완료 
-
-
 $$$ 
 ### 201003 020 Bert 소스 정리 
 ## part3_모델불러와서_Classification수행 $$$ >>> 이것 파일 만들기 
@@ -66,46 +55,6 @@ $$$ Do - 일요일에 회사에서
 
 
 
-	
-$$$ 진행중 - 집에가서 마저 확인 
-### 201010 데이터 1차 수집 
-# 122630    KODEX레버리지
-# 252670    KODEX200선물인버스2X
-# 019170    신풍제약
-# 005930    삼성전자
-
-: 1000번 돌림 > 20000개 > 15000초 (4H)  18MB
-
-SELECT TABLE_NAME AS "Tables",
-round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
-FROM information_schema.TABLES
-WHERE table_schema = 'cei'
-ORDER BY (data_length + index_length) DESC;
-
-SELECT COUNT(*) FROM T122630_20201009; /* 20000건 완료 */ /* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
-SELECT COUNT(*) FROM T252670_20201009; /* 20000건 완료 */
-SELECT COUNT(*) FROM T019170_20201009; /* 진행중 - 집에가서 마저 확인  */
-SELECT COUNT(*) FROM T005930_20201009; /* 진행중 - 집에가서 마저 확인  */
-
-/* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
-SELECT * FROM T122630_20201009 ORDER BY DATE asc; 
-SELECT * FROM T122630_20201009 ORDER BY DATE desc;
-
-/* 2020.09.18 09:14 ~ 2020.10.10 12:23 */
-SELECT * FROM T252670_20201009 ORDER BY DATE asc; 
-SELECT * FROM T252670_20201009 ORDER BY DATE desc;
-
-/* $$$ */
-SELECT * FROM T005930_20201009 ORDER BY DATE asc; 
-SELECT * FROM T005930_20201009 ORDER BY DATE desc;
-
-/* $$$ */
-SELECT * FROM T019170_20201009 ORDER BY DATE asc; 
-SELECT * FROM T019170_20201009 ORDER BY DATE desc;
-
-
-
-
 --------------------
 
 
@@ -128,6 +77,48 @@ SELECT * FROM T019170_20201009 ORDER BY DATE desc;
 
 
 
+### 201010 데이터 수집 현황
+# 122630    KODEX레버리지
+# 252670    KODEX200선물인버스2X
+# 019170    신풍제약
+# 005930    삼성전자
+
+## 
+계속 뒤로 밀리니까 
+(1차) 1~1000 page 스크랩했으면 (5H) 
+(2차) 1000~4000 page 스크랩 하면 됨. (15H 예상) (테이블 이름 20201010으로 바꾸기) 
+	>>> 계속 밀리니까 겹치는 부분이 있음 (1000~1100 페이지 정도까지의 앞부분)
+	>>> 합칠때는 시간순으로 보고 중복된 것 지우고 합치기 
+
+## 
+: 1000번 돌림 > 20000개 > 15000초 (4H)  18MB
+: 총 40MB 
+SELECT TABLE_NAME AS "Tables",
+round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
+FROM information_schema.TABLES
+WHERE table_schema = 'cei'
+ORDER BY (data_length + index_length) DESC;
+
+SELECT COUNT(*) FROM T122630_20201009; /* 20000건 완료 */ /* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
+SELECT COUNT(*) FROM T252670_20201009; /* 20000건 완료 */ /* 2020.09.18 09:14 ~ 2020.10.10 12:23 */
+SELECT COUNT(*) FROM T019170_20201009; /* 20000건 완료 */ /* 2020.09.14 14:16 ~ 2020.10.10 16:07 */
+SELECT COUNT(*) FROM T005930_20201009; /* 20000건 완료 */ /* 2020.09.28 13:37 ~ 2020.10.10 16:18 */
+
+/* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
+SELECT * FROM T122630_20201009 ORDER BY DATE asc; 
+SELECT * FROM T122630_20201009 ORDER BY DATE desc;
+
+/* 2020.09.18 09:14 ~ 2020.10.10 12:23 */
+SELECT * FROM T252670_20201009 ORDER BY DATE asc; 
+SELECT * FROM T252670_20201009 ORDER BY DATE desc;
+
+/* 2020.09.14 14:16 ~ 2020.10.10 16:07 */
+SELECT * FROM T005930_20201009 ORDER BY DATE asc; 
+SELECT * FROM T005930_20201009 ORDER BY DATE desc;
+
+/* 2020.09.28 13:37 ~ 2020.10.10 16:18 */
+SELECT * FROM T019170_20201009 ORDER BY DATE asc; 
+SELECT * FROM T019170_20201009 ORDER BY DATE desc;
 
 
 
@@ -135,6 +126,47 @@ SELECT * FROM T019170_20201009 ORDER BY DATE desc;
 (완료)
 
 
+
+
+### 201010 데이터 수집 현황
+# 122630    KODEX레버리지
+# 252670    KODEX200선물인버스2X
+# 019170    신풍제약
+# 005930    삼성전자
+
+: 1000번 돌림 > 20000개 > 15000초 (4H)  18MB
+: 총 40MB 
+SELECT TABLE_NAME AS "Tables",
+round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
+FROM information_schema.TABLES
+WHERE table_schema = 'cei'
+ORDER BY (data_length + index_length) DESC;
+
+SELECT COUNT(*) FROM T122630_20201009; /* 20000건 완료 */ /* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
+SELECT COUNT(*) FROM T252670_20201009; /* 20000건 완료 */ /* 2020.09.18 09:14 ~ 2020.10.10 12:23 */
+SELECT COUNT(*) FROM T019170_20201009; /* 20000건 완료 */ /* 2020.09.14 14:16 ~ 2020.10.10 16:07 */
+SELECT COUNT(*) FROM T005930_20201009; /* 20000건 완료 */ /* 2020.09.28 13:37 ~ 2020.10.10 16:18 */
+
+/* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
+SELECT * FROM T122630_20201009 ORDER BY DATE asc; 
+SELECT * FROM T122630_20201009 ORDER BY DATE desc;
+
+/* 2020.09.18 09:14 ~ 2020.10.10 12:23 */
+SELECT * FROM T252670_20201009 ORDER BY DATE asc; 
+SELECT * FROM T252670_20201009 ORDER BY DATE desc;
+
+/* 2020.09.14 14:16 ~ 2020.10.10 16:07 */
+SELECT * FROM T005930_20201009 ORDER BY DATE asc; 
+SELECT * FROM T005930_20201009 ORDER BY DATE desc;
+
+/* 2020.09.28 13:37 ~ 2020.10.10 16:18 */
+SELECT * FROM T019170_20201009 ORDER BY DATE asc; 
+SELECT * FROM T019170_20201009 ORDER BY DATE desc;
+
+
+### 201003 020 Bert 소스 정리 
+## part2_bert감정분석_모델학습및저장 
+	: 검증 완료 
 
 
 ### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 >>> 다시 불러오기 해보기 
