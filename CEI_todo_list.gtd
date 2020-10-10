@@ -10,35 +10,27 @@ https://github.com/head4ths/CEI
 */
 
 
-$$$
-### 201010 데스크탑 로컬 
-    # KODEX레버리지
-    SELECT COUNT(*) FROM T122630_20201009
-    2353 / 20000
- 
- 
-
-$$$
-### 201010 데스크탑 로컬
-C:\Users\head4\myjupyter\cei
-
-
-$$$
-### 201009 소스 정리하고 종목별로 나누기 
 
 
 
-$$$
-### 201009 오늘 밤에 자기 전에 데스크탑으로 돌려 놓고 데이터 대량으로 모으기
-: 꼭 한번에 다 받을 필요없음. 끊어서 받아와서 합쳐도 됨 
-# 122630    KODEX레버리지
-# 252670    KODEX200선물인버스2X
-# 019170    신풍제약
-# 005930    삼성전자
 
-: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
-: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
 
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기
+
+## 소스 
+(Colab) part2_bert감정분석
+
+
+## 모델 중간 저장 - 텐서 플로우
+# 참조1
+https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko
+https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko#scrollTo=mQF_dlgIVOvq
+
+# 참조2
+http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
+
+# 참조3
+https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko
 
 
 
@@ -48,15 +40,11 @@ $$$
 
 
 
-
-### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기
-
-
 ### 201003 030 mariaDB 에 저장된 것 가져와서 감정분석
     : 저장된 데이터 dataframe 으로 불러와서 감정분석해서 건별로 태그 달기 
 	: 태그 단 것 DB에 저장하기 
 	
-
+	
 ### 201003 040 일자별 인덱스 만들기 
 
 
@@ -64,28 +52,45 @@ $$$
 
 
 ### 201003 060 상관관계 분석
-    : 글의 갯수, 감정분석
-    : 주가, 거래량, 투자자별 매매동향
+    : 글의 갯수, 감정분석 비율 
+    : 주가, 거래량, 투자자별 매매동향 ( 거래소? ) 
 
 
+
+	
+$$$ 진행중 - 집에가서 마저 확인 
+### 201010 데이터 1차 수집 
+# 122630    KODEX레버리지
+# 252670    KODEX200선물인버스2X
+# 019170    신풍제약
+# 005930    삼성전자
+
+: 1000번 돌림 > 20000개 > 15000초 (4H)  18MB
+
+SELECT COUNT(*) FROM T122630_20201009; /* 20000건 완료 */ /* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
+SELECT COUNT(*) FROM T252670_20201009; /* 20000건 완료 */
+SELECT COUNT(*) FROM T019170_20201009; /* 진행중 - 집에가서 마저 확인  */
+SELECT COUNT(*) FROM T005930_20201009; /* 진행중 - 집에가서 마저 확인  */
+
+/* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
+SELECT * FROM T122630_20201009 ORDER BY DATE asc; 
+SELECT * FROM T122630_20201009 ORDER BY DATE desc;
+
+/* 2020.09.18 09:14 ~ 2020.10.10 12:23 */
+SELECT * FROM T252670_20201009 ORDER BY DATE asc; 
+SELECT * FROM T252670_20201009 ORDER BY DATE desc;
+
+/* $$$ */
+SELECT * FROM T019170_20201009 ORDER BY DATE asc; 
+SELECT * FROM T019170_20201009 ORDER BY DATE desc;
+
+/* $$$ */
+SELECT * FROM T005930_20201009 ORDER BY DATE asc; 
+SELECT * FROM T005930_20201009 ORDER BY DATE desc;
 
 
 
 --------------------
-
-
-
-
-### 555 모델 중간 저장 - 텐서 플로우
-- 참조1
-https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko
-https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko#scrollTo=mQF_dlgIVOvq
-
-- 참조2
-http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
-
-- 참조3
-https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko
 
 
 
@@ -107,8 +112,77 @@ https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/k
 
 
 
+
+
+
 =====================================================================================================================
 (완료)
+
+
+
+
+
+
+
+
+
+
+
+### 201010 데이터 수집은
+어차피 GPU 안 쓰니까  
+집 데스크탑에서 돌리는게 나음 
+
+주피터노트북으로도 여러건 동시에 돌릴 수 있고 selenium 도 좀더 빠른것 같고 
+특히 DB에 건건이 CONNECT 하고 INSERT 하는게 같은 망이라서 그런지 비교도 안되게 빠름 
+
+구글 코랩은 계속 세션 끊김. 
+
+BERT는 GPU 써야 되고 자원써서 발열 심하니까 코랩 어쩔 수 없이 쓰지만 
+데이터 수집은 로컬이 우월. 
+
+
+
+### 555 모델 중간 저장 - 텐서 플로우
+- 참조1
+https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko
+https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko#scrollTo=mQF_dlgIVOvq
+
+- 참조2
+http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
+
+- 참조3
+https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko
+
+
+
+
+
+### 201010 데스크탑 로컬 
+    # KODEX레버리지
+    SELECT COUNT(*) FROM T122630_20201009
+    2353 / 20000
+ 
+ 
+### 201010 데스크탑 로컬
+C:\Users\head4\myjupyter\cei
+
+
+
+### 201009 소스 정리하고 종목별로 나누기 
+
+
+
+### 201009 오늘 밤에 자기 전에 데스크탑으로 돌려 놓고 데이터 대량으로 모으기
+: 꼭 한번에 다 받을 필요없음. 끊어서 받아와서 합쳐도 됨 
+# 122630    KODEX레버리지
+# 252670    KODEX200선물인버스2X
+# 019170    신풍제약
+# 005930    삼성전자
+
+: 20번 돌림 > 400개 > 300초 > 0.36MB : 신풍제약 기준 약 하루
+: 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
+
+
 
 
 ### 201010 데스크탑 로컬
@@ -120,9 +194,10 @@ https://stackoverflow.com/questions/30337394/pandas-to-sql-fails-on-duplicate-pr
 
  SELECT COUNT(*) FROM T122630_20201009
 
-df1 SELECT * FROM T122630_20201009
- ORDER BY DATE ASC;
- 
+df1 
+SELECT * FROM T122630_20201009
+ORDER BY DATE ASC;
+
 
 
 ### 201010 Colab-자주끊기는-런타임-방지하기 데스크탑
