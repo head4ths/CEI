@@ -14,27 +14,73 @@ https://github.com/head4ths/CEI
 
 
 
+$$$
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 - 참조4
+# BertForSequenceClassification
+# How to save a model as a BertModel #2094
+https://github.com/huggingface/transformers/issues/2094
 
-### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기
+save_pretrained 
 
+from transformers import BertForSequenceClassification, BertConfig
+
+config = BertConfig.from_pretrained("bert-base-cased", num_labels=3)
+model = BertForSequenceClassification.from_pretrained("bert-base-cased", config=config)
+model.load_state_dict(torch.load("SAVED_SST_MODEL_DIR/pytorch_model.bin"))
+
+
+# How to load BertforSequenceClassification models weights into BertforTokenClassification model? https://stackoverflow.com/questions/60897514/how-to-load-bertforsequenceclassification-models-weights-into-bertfortokenclassi
+
+
+new_model = BertForTokenClassification(config=config)
+new_model.bert.load_state_dict(model.bert.state_dict())
+
+!mkdir -p saved_model
+model.save('saved_model/my_model') 
+
+# BertForTokenClassification model.save
+
+model = BertForSequenceClassification.from_pretrained(gv_model_nm, num_labels=2)
+
+## 참조 
+https://github.com/huggingface/transformers/issues/2517
+# load config
+conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
+# load a sequence model
+bsm = BertForTokenClassification.from_pretrained('bert-base-uncased', config=conf)
+# get bert core model
+bcm = bsm.bert
+# save the core model
+bcm.save_pretrained('the output directory path')
+# you also need to save your tokenizer in the same directory
+
+## 참조2 - 검색 
+https://www.google.com/search?sxsrf=ALeKk013i9Ir4dm_XebJUjc_kCRRRuGjew%3A1602323594165&ei=ioSBX8m8CaTKmAWB46SQBw&q=BertForTokenClassification+model+save_pretrained+colab&oq=BertForTokenClassification+model+save_pretrained+colab&gs_lcp=CgZwc3ktYWIQAzoECCMQJzoHCCMQrgIQJzoHCCEQChCgAVCXLFi4PmDhQmgBcAB4AIAB1QGIAZELkgEFMC43LjGYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=psy-ab&ved=0ahUKEwjJqZTF4KnsAhUkJaYKHYExCXIQ4dUDCA0&uact=5
+
+## 참조2 (Good!)
+https://colab.research.google.com/drive/1Y4o3jh3ZH70tl6mCd76vz_IxX23biCPP
+
+## 참조3 
+https://colab.research.google.com/github/pytorch/pytorch.github.io/blob/master/assets/hub/huggingface_pytorch-transformers.ipynb#scrollTo
+
+## 핵심 키워드 
+# from_pretrained
+conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
+# save_pretrained
+bcm.save_pretrained('the output directory path')
+
+
+
+
+
+
+
+### 201010 bert 소스 수정 
 ## 소스 
 (Colab) part2_bert감정분석
-
-
-## 모델 중간 저장 - 텐서 플로우
-# 참조1
-https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko
-https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko#scrollTo=mQF_dlgIVOvq
-
-# 참조2
-http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
-
-# 참조3
-https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko
-
-
-
-
+	
+## 학습시 과정에서 시간 출력하게 수정하기 
+#615K_20200615_v19
 
 --------------------
 
@@ -121,9 +167,92 @@ SELECT * FROM T005930_20201009 ORDER BY DATE desc;
 
 
 
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 - 참조2
+# 참조2
+http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
+
+from os import path
+from google.colab import drive
+
+notebooks_dir_name = 'notebooks'
+drive.mount('/content/gdrive')
+notebooks_base_dir = path.join('./gdrive/My Drive/', notebooks_dir_name)
+if not path.exists(notebooks_base_dir):
+  print('Check your google drive directory. See you file explorer')
+
+
+with open(path.join(notebooks_base_dir, "myfile.txt"), "w") as f:
+    f.write("Google Colab is good!!!")
+	
+
+	
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 - 참조1
+## 참조 1,2,3은 개념만 대강 보고 참조4에서 bert 모델용으로 나온 것 쓰기 
+
+## 모델 중간 저장 - 텐서 플로우
+# 참조1
+https://www.tensorflow.org/tutorials/keras/save_and_load?hl=ko
+https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/ko/tutorials/keras/save_and_load.ipynb?hl=ko#scrollTo=mQF_dlgIVOvq
+
+tf.keras.callbacks.ModelCheckpoint
+checkpoint_path = "training_1/cp.ckpt"
+
+latest = tf.train.latest_checkpoint(checkpoint_dir)
+latest_checkpoint
+
+# 이전에 저장한 가중치를 로드합니다
+model.load_weights(latest)
+
+
+수동으로 가중치 저장하기
+앞에서 가중치를 모델에 로드하는 방법을 보았습니다. 수동으로 가중치를 저장하는 것도 쉽습니다. Model.save_weights 메서드를 사용합니다. tf.keras는, 특히 save_weights는 .ckpt 확장자를 가진 텐서플로 체크포인트 포맷을 사용합니다(.h5 확장자의 HDF5으로 저장하는 것은 Save and serialize models 가이드에서 다룹니다):
+
+
+전체 모델 저장하기
+model.save 메서드를 호출하여 모델의 구조, 가중치, 훈련 설정을 하나의 파일/폴더에 저장합니다. 모델을 저장하기 때문에 원본 파이썬 코드*가 없어도 사용할 수 있습니다. 옵티마이저 상태가 복원되므로 정확히 중지한 시점에서 다시 훈련을 시작할 수 있습니다.
+
+두 개의 포맷(SavedModel과 HDF5)으로 모델을 저장할 수 있습니다. 텐서플로의 SavedModel 포맷은 TF2.x에서기본 파일 포맷입니다. 하지만 HDF5 포맷으로 저장할 수도 있습니다. 두 파일 포맷으로 전체 모델을 저장하는 방법은 아래에서 자세히 설명합니다.
+
+전체 모델을 저장하는 기능은 매우 유용합니다. TensorFlow.js로 모델을 로드한 다음 웹 브라우저에서 모델을 훈련하고 실행할 수 있습니다(Saved Model, HDF5). 또는 모바일 장치에 맞도록 변환한 다음 TensorFlow Lite를 사용하여 실행할 수 있습니다(Saved Model, HDF5).
+
+* 사용자 정의 객체(예를 들면 상속으로 만든 클래스나 층)는 저장하고 로드하는데 특별한 주의가 필요합니다. 아래 사용자 정의 객체 저장하기 섹션을 참고하세요.
+
+
+# SavedModel로 전체 모델을 저장합니다
+!mkdir -p saved_model
+model.save('saved_model/my_model') 
+
+new_model = tf.keras.models.load_model('saved_model/my_model')
+
+# 모델 구조를 확인합니다
+new_model.summary()
+
+model.load_weights(latest)
+model.save
+tf.keras.models.load_model
+
+
+### 201010 모델 저장용 local 설치 
+pip install --upgrade pip
+pip install -q pyyaml h5py
+pip install pyyaml h5py 
+ERROR: Could not install packages due to an EnvironmentError: [WinError 5] 액세스가 거부되었습니다: 'c:\\programdata\\anaconda3\\lib\\site-packages\\pip\\_internal\\build_env.py'
+Consider using the `--user` option or check the permissions.
+해당 폴더에 적절한 권한이 없어서 발생하는 문제로, 관리자 권한으로 CMD를 실행하면 해결됩니다.
+C:\\Users\\user\\AppData\\Local\\Temp\\pip-uninstall-8wl6ryze\\pip.exe
+C:\Users\user\AppData\Local\Temp\pip-uninstall-8wl6ryze\
 
 
 
+### 201010 GPU
+안녕하세요. 서버에 대해 1도 모르는 대학원생이 작은 서버구축 관련하여 질문 드립니다. 최근 같이 일하게 된 Psychology/Biomedical Engineering 교수님이 (작은) 연구실용 서버 구축하는 것을 도와드리게 되었습니다.
+첫 번째 질문입니다. 딥러닝 연구 목적으로 생각했을 때 Tesla P100 한 대 vs. TITAN RTX 두 대 vs. RTX 2080 Ti 네 대 비교한다면 어떤 게 좋을까요? 24/7 계속해서 GPU 돌릴게 아니고 간단한 벤치마크로 봐도 RTX 2080 Ti가 나아보이는데요... 경험 있으신 분들 의견을 구합니다. 저는 Titan Xp와 1080ti 밖에 사용을 안 해봤습니다 ㅜㅜ
+두 번째 질문입니다. 현재 이 연구실은 PowerEdge T440 Tower Server를 가지고 있습니다 ㅜㅜ 지금까지 GPU로 연산을 돌리지 않았아서 T440을 가지고 있는 것 같아요. Intel Xeon Gold 5118 (2.3G, 12C/24T, 10.4GT/s, 16M
+Cache) x 2개, 32GB RDIMM 2666MT/s Dual Rank x 6개, 4TB 7.2K RPM SATA 6Gbps 512n 3.5in Hot-plug Hard Drive x 8개가 장착되어 있습니다. 중요한건 꽂을 수 있는 GPU가 Quadro NVS 310나 P4000 밖에 없습니다. OMG... 이런 경우에 어떤 해결책이 있을까요? Tower를 T640 (Nvidia P100 장착가능)이나 R740 (Nvidia P100 or V100 장착가능)로 바꾸는 것은 현명한 방법일까요? 혹은 RTX 2080 Ti 설치가능한 Dell Server용 Tower가 있나요?
+세 번째 질문입니다. 데이터는 주로 2D 이미지 일 것 같은데요, HDD로 충분할까요 아니면 적어도 SATA SSD를 구입해야 할까요? (이 질문에 대한 답변은 충분히 되었습니다.)
+어떤 코멘트라도 좋으니 생각 공유해주시면 감사하겠습니다.
+
+https://lambdalabs.com/blog/best-gpu-tensorflow-2080-ti-vs-v100-vs-titan-v-vs-1080-ti-benchmark/
 
 
 
