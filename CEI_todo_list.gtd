@@ -17,40 +17,22 @@ https://github.com/head4ths/CEI
 
 
 
-$$$ 
-### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 >>> 다시 불러오기 해보기 
-: 700MB 정도 되는 듯 ??? 
-: 구글 드라이브 쓰는게 구글 코랩에서 저장하고 불러오는데 매우 빠름 !!! 좋은 선택 !!!
-: 뭐가 저장되는지 다운 받아지면 한번 열어보기 
-
-
-## 참조2 (Good!)
-https://colab.research.google.com/drive/1Y4o3jh3ZH70tl6mCd76vz_IxX23biCPP
-
-## 핵심 키워드 
-# from_pretrained
-conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
-# save_pretrained
-bcm.save_pretrained('the output directory path')
-
-## 원래 소스 
-model = BertForSequenceClassification.from_pretrained(gv_model_nm, num_labels=2)
-tokenizer = BertTokenizer.from_pretrained(gv_model_nm, do_lower_case=gv_do_lower_case)
-
-## 불러오기 ( 불러온 걸로 시연 해보기 )
-
-
 
 $$$ 
 ### 201003 020 Bert 소스 정리 
-# part2_bert감정분석_모델학습및저장
-# part3_모델불러와서_Classification수행
+## part2_bert감정분석_모델학습및저장 $$$ >>> 돌려서 검증하는 중 
+
+
+## part3_모델불러와서_Classification수행 $$$ >>> 이것 파일 만들기 
+# 불러오기 ( 불러온 걸로 시연 해보기 )
 
 
 
 $$$ Do - 일요일에 회사에서 
 ### 201010 모델 제일 결과 좋았던 걸로 학습시켜서 저장하기 
 # part2_bert감정분석_모델학습및저장
+
+
 
 
 --------------------
@@ -136,6 +118,28 @@ SELECT * FROM T005930_20201009 ORDER BY DATE desc;
 (완료)
 
 
+
+
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 >>> 다시 불러오기 해보기 
+: 700MB 정도 되는 듯 ??? 
+: 구글 드라이브 쓰는게 구글 코랩에서 저장하고 불러오는데 매우 빠름 !!! 좋은 선택 !!!
+: 뭐가 저장되는지 다운 받아지면 한번 열어보기 
+
+
+## 참조2 (Good!)
+https://colab.research.google.com/drive/1Y4o3jh3ZH70tl6mCd76vz_IxX23biCPP
+
+## 핵심 키워드 
+# from_pretrained
+conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
+# save_pretrained
+bcm.save_pretrained('the output directory path')
+
+## 원래 소스 
+model = BertForSequenceClassification.from_pretrained(gv_model_nm, num_labels=2)
+tokenizer = BertTokenizer.from_pretrained(gv_model_nm, do_lower_case=gv_do_lower_case)
+
+## 불러오기 ( 불러온 걸로 시연 해보기 )
 
 
 
