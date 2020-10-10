@@ -10,6 +10,18 @@ https://github.com/head4ths/CEI
 */
 
 
+$$$
+### 201010 데스크탑 로컬 
+    # KODEX레버리지
+    SELECT COUNT(*) FROM T122630_20201009
+    2353 / 20000
+ 
+ 
+
+$$$
+### 201010 데스크탑 로컬
+C:\Users\head4\myjupyter\cei
+
 
 $$$
 ### 201009 소스 정리하고 종목별로 나누기 
@@ -99,6 +111,58 @@ https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/k
 (완료)
 
 
+### 201010 데스크탑 로컬
+C:\Users\head4\myjupyter\cei
+
+### 201010 데스크탑
+
+https://stackoverflow.com/questions/30337394/pandas-to-sql-fails-on-duplicate-primary-key
+
+ SELECT COUNT(*) FROM T122630_20201009
+
+df1 SELECT * FROM T122630_20201009
+ ORDER BY DATE ASC;
+ 
+
+
+### 201010 Colab-자주끊기는-런타임-방지하기 데스크탑
+Colab - 세션유지
+
+방법은
+
+구글 코랩에서 F12로 개발자 도구창을 열고
+
+Console 선택 후
+
+아래의 코드를 입력한 뒤 엔터를 누르면됩니다.
+
+function ClickConnect() {var buttons = document.querySelectorAll("colab-dialog.yes-no-dialog paper-button#cancel"); buttons.forEach(function(btn) { btn.click(); }); console.log("1분마다 자동 재연결"); document.querySelector("colab-toolbar-button#connect").click(); } setInterval(ClickConnect,1000*60);
+
+출처: https://somjang.tistory.com/entry/Google-Colab-자주끊기는-런타임-방지하기 [솜씨좋은장씨]
+
+
+1. 구글 colab에서 90 time out 세션 유지 javascript 코드
+
+function ClickConnect() {
+    var buttons = document.querySelectorAll("colab-dialog.yes-no-dialog paper-button#cancel"); 
+    buttons.forEach(function(btn) { 
+        btn.click(); 
+    }); 
+    console.log("1분마다 자동 재연결"); 
+    document.querySelector("colab-toolbar-button#connect").click(); 
+} 
+setInterval(ClickConnect,1000*60);
+ 
+2. 구글 colab에서 buffered data was truncated after reaching the output size limit 에러 방지를 위한 현재 출력창 자동 지우기
+
+function CleanCurrentOutput(){ 
+    var btn = document.querySelector(".output-icon.clear_outputs_enabled.output-icon-selected[title$='현재 실행 중...'] iron-icon[command=clear-focused-or-selected-outputs]"); 
+    if(btn) { console.log("30분마다 출력 지우기");
+     btn.click(); 
+    } 
+} 
+setInterval(CleanCurrentOutput,1000*60*30);
+ 
 
 
 ### 201009 로컬로 데스크탑에서 1번 소스 파이썬으로 돌려보고 시간재기 (로컬 수행)
@@ -116,7 +180,7 @@ https://colab.research.google.com/github/tensorflow/docs-l10n/blob/master/site/k
 : 2000번 돌림 > 40000개 > 30000초 (8H)  > 36MB
 https://stackoverflow.com/questions/29858752/error-message-chromedriver-executable-needs-to-be-available-in-the-path
 driver = webdriver.Chrome('/path/to/chromedriver') 
-driver = webdriver.Chrome("C:/Users/michael/Downloads/chromedriver_win32/chromedriver.exe")
+driver = webdriver.Chrome("C:/Users/head4/myjupyter/cei/chromedriver.exe")
 
 # How To Make Selenium WebDriver Scripts Faster
 https://seleniumjava.com/2015/12/12/how-to-make-selenium-webdriver-scripts-faster/
