@@ -20,11 +20,21 @@ https://github.com/head4ths/CEI
 
 $$$ 
 ### 201003 020 Bert 소스 정리 
-## part2_bert감정분석_모델학습및저장 $$$ >>> 돌려서 검증하는 중 
+## part2_bert감정분석_모델학습및저장 
+	: 검증 완료 
 
 
+$$$ 
+### 201003 020 Bert 소스 정리 
 ## part3_모델불러와서_Classification수행 $$$ >>> 이것 파일 만들기 
 # 불러오기 ( 불러온 걸로 시연 해보기 )
+
+# 앞부분에 모델 갱신시점 확인도 하기 
+!ls -l --block-size=K /content/gdrive/'My Drive'/bert_model_save
+!ls -l --block-size=M /content/gdrive/'My Drive'/bert_model_save/pytorch_model.bin
+
+
+
 
 
 
@@ -66,6 +76,12 @@ $$$ 진행중 - 집에가서 마저 확인
 
 : 1000번 돌림 > 20000개 > 15000초 (4H)  18MB
 
+SELECT TABLE_NAME AS "Tables",
+round(((data_length + index_length) / 1024 / 1024), 2) "Size in MB"
+FROM information_schema.TABLES
+WHERE table_schema = 'cei'
+ORDER BY (data_length + index_length) DESC;
+
 SELECT COUNT(*) FROM T122630_20201009; /* 20000건 완료 */ /* 2020.05.24 04:13 ~ 2020.10.10 07:40 */
 SELECT COUNT(*) FROM T252670_20201009; /* 20000건 완료 */
 SELECT COUNT(*) FROM T019170_20201009; /* 진행중 - 집에가서 마저 확인  */
@@ -80,12 +96,13 @@ SELECT * FROM T252670_20201009 ORDER BY DATE asc;
 SELECT * FROM T252670_20201009 ORDER BY DATE desc;
 
 /* $$$ */
+SELECT * FROM T005930_20201009 ORDER BY DATE asc; 
+SELECT * FROM T005930_20201009 ORDER BY DATE desc;
+
+/* $$$ */
 SELECT * FROM T019170_20201009 ORDER BY DATE asc; 
 SELECT * FROM T019170_20201009 ORDER BY DATE desc;
 
-/* $$$ */
-SELECT * FROM T005930_20201009 ORDER BY DATE asc; 
-SELECT * FROM T005930_20201009 ORDER BY DATE desc;
 
 
 
