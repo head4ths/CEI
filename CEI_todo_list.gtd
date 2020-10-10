@@ -14,62 +14,24 @@ https://github.com/head4ths/CEI
 
 
 
+
+
+
+
 $$$
 ### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 - 참조4
-# BertForSequenceClassification
-# How to save a model as a BertModel #2094
-https://github.com/huggingface/transformers/issues/2094
+: 700MB 정도 되는 듯 ??? 
+: 구글 드라이브 쓰는게 구글 코랩에서 저장하고 불러오는데 매우 빠름 !!! 좋은 선택 !!!
 
-save_pretrained 
-
-from transformers import BertForSequenceClassification, BertConfig
-
-config = BertConfig.from_pretrained("bert-base-cased", num_labels=3)
-model = BertForSequenceClassification.from_pretrained("bert-base-cased", config=config)
-model.load_state_dict(torch.load("SAVED_SST_MODEL_DIR/pytorch_model.bin"))
-
-
-# How to load BertforSequenceClassification models weights into BertforTokenClassification model? https://stackoverflow.com/questions/60897514/how-to-load-bertforsequenceclassification-models-weights-into-bertfortokenclassi
-
-
-new_model = BertForTokenClassification(config=config)
-new_model.bert.load_state_dict(model.bert.state_dict())
-
-!mkdir -p saved_model
-model.save('saved_model/my_model') 
-
-# BertForTokenClassification model.save
-
-model = BertForSequenceClassification.from_pretrained(gv_model_nm, num_labels=2)
-
-## 참조 
-https://github.com/huggingface/transformers/issues/2517
-# load config
-conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
-# load a sequence model
-bsm = BertForTokenClassification.from_pretrained('bert-base-uncased', config=conf)
-# get bert core model
-bcm = bsm.bert
-# save the core model
-bcm.save_pretrained('the output directory path')
-# you also need to save your tokenizer in the same directory
-
-## 참조2 - 검색 
-https://www.google.com/search?sxsrf=ALeKk013i9Ir4dm_XebJUjc_kCRRRuGjew%3A1602323594165&ei=ioSBX8m8CaTKmAWB46SQBw&q=BertForTokenClassification+model+save_pretrained+colab&oq=BertForTokenClassification+model+save_pretrained+colab&gs_lcp=CgZwc3ktYWIQAzoECCMQJzoHCCMQrgIQJzoHCCEQChCgAVCXLFi4PmDhQmgBcAB4AIAB1QGIAZELkgEFMC43LjGYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=psy-ab&ved=0ahUKEwjJqZTF4KnsAhUkJaYKHYExCXIQ4dUDCA0&uact=5
 
 ## 참조2 (Good!)
 https://colab.research.google.com/drive/1Y4o3jh3ZH70tl6mCd76vz_IxX23biCPP
-
-## 참조3 
-https://colab.research.google.com/github/pytorch/pytorch.github.io/blob/master/assets/hub/huggingface_pytorch-transformers.ipynb#scrollTo
 
 ## 핵심 키워드 
 # from_pretrained
 conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
 # save_pretrained
 bcm.save_pretrained('the output directory path')
-
-
 
 
 
@@ -167,6 +129,71 @@ SELECT * FROM T005930_20201009 ORDER BY DATE desc;
 
 
 
+
+### 201010 
+OSError: [Errno 95] Operation not supported: '/content/drive/Mask_RCNN' on Google Colab-자주끊기는-런타임-방지하기
+https://stackoverflow.com/questions/60132033/oserror-errno-95-operation-not-supported-content-drive-mask-rcnn-on-googl
+
+
+
+
+### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 - 참조4
+# BertForSequenceClassification
+# How to save a model as a BertModel #2094
+https://github.com/huggingface/transformers/issues/2094
+
+save_pretrained 
+
+from transformers import BertForSequenceClassification, BertConfig
+
+config = BertConfig.from_pretrained("bert-base-cased", num_labels=3)
+model = BertForSequenceClassification.from_pretrained("bert-base-cased", config=config)
+model.load_state_dict(torch.load("SAVED_SST_MODEL_DIR/pytorch_model.bin"))
+
+
+# How to load BertforSequenceClassification models weights into BertforTokenClassification model? https://stackoverflow.com/questions/60897514/how-to-load-bertforsequenceclassification-models-weights-into-bertfortokenclassi
+
+
+new_model = BertForTokenClassification(config=config)
+new_model.bert.load_state_dict(model.bert.state_dict())
+
+!mkdir -p saved_model
+model.save('saved_model/my_model') 
+
+# BertForTokenClassification model.save
+
+model = BertForSequenceClassification.from_pretrained(gv_model_nm, num_labels=2)
+
+## 참조 
+https://github.com/huggingface/transformers/issues/2517
+# load config
+conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
+# load a sequence model
+bsm = BertForTokenClassification.from_pretrained('bert-base-uncased', config=conf)
+# get bert core model
+bcm = bsm.bert
+# save the core model
+bcm.save_pretrained('the output directory path')
+# you also need to save your tokenizer in the same directory
+
+## 참조2 - 검색 
+https://www.google.com/search?sxsrf=ALeKk013i9Ir4dm_XebJUjc_kCRRRuGjew%3A1602323594165&ei=ioSBX8m8CaTKmAWB46SQBw&q=BertForTokenClassification+model+save_pretrained+colab&oq=BertForTokenClassification+model+save_pretrained+colab&gs_lcp=CgZwc3ktYWIQAzoECCMQJzoHCCMQrgIQJzoHCCEQChCgAVCXLFi4PmDhQmgBcAB4AIAB1QGIAZELkgEFMC43LjGYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=psy-ab&ved=0ahUKEwjJqZTF4KnsAhUkJaYKHYExCXIQ4dUDCA0&uact=5
+
+## 참조2 (Good!)
+https://colab.research.google.com/drive/1Y4o3jh3ZH70tl6mCd76vz_IxX23biCPP
+
+## 참조3 
+https://colab.research.google.com/github/pytorch/pytorch.github.io/blob/master/assets/hub/huggingface_pytorch-transformers.ipynb#scrollTo
+
+## 핵심 키워드 
+# from_pretrained
+conf = BertConfig.from_pretrained('bert-base-uncased', num_labels=2)
+# save_pretrained
+bcm.save_pretrained('the output directory path')
+
+
+
+
 ### 201003 020 Bert 모델 구글드라이브등 어딘가에 중간저장 해보기 - 참조2
 # 참조2
 http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo=49&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView
@@ -174,14 +201,14 @@ http://blog.naver.com/PostView.nhn?blogId=wideeyed&logNo=221564411127&categoryNo
 from os import path
 from google.colab import drive
 
-notebooks_dir_name = 'notebooks'
+model_dir_name = 'bert_model_save'
 drive.mount('/content/gdrive')
-notebooks_base_dir = path.join('./gdrive/My Drive/', notebooks_dir_name)
-if not path.exists(notebooks_base_dir):
+model_base_dir = path.join('./gdrive/My Drive/', model_dir_name)
+if not path.exists(model_base_dir):
   print('Check your google drive directory. See you file explorer')
 
 
-with open(path.join(notebooks_base_dir, "myfile.txt"), "w") as f:
+with open(path.join(model_base_dir, "myfile.txt"), "w") as f:
     f.write("Google Colab is good!!!")
 	
 
