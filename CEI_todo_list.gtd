@@ -23,7 +23,9 @@ CREATE TABLE T122630 AS SELECT * FROM T122630_20201009;
 
 */
 
-
+/* CMG제약 */
+https://finance.naver.com/item/board.nhn?code=058820&page=1
+https://finance.naver.com/item/board.nhn?code=058820&page=4082
 
 
 https://finance.naver.com/item/board.nhn?code=252670&page=10800
@@ -58,6 +60,7 @@ https://finance.naver.com/item/board.nhn?code=019170&page=25000
 https://finance.naver.com/item/board.nhn?code=006280&page=1
 https://finance.naver.com/item/board.nhn?code=006280&page=3000
 /*SELECT MIN(DATE), MAX(DATE) FROM T006280_20201107;*/  /*2017.06.08 14:16 2020.11.07 19:51*/
+
 
 /* 전기간 수집완료 */
 /*SELECT MIN(DATE), MAX(DATE) FROM T122630;*/ /*2017.06.07 07:55 ~ 2020.10.10 07:40*/
