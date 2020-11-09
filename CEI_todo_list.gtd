@@ -10,152 +10,18 @@ https://github.com/head4ths/CEI
 */
 
 
-### 201107  4차 데이터 수집 
-/*
-(1) 적재기간 확인하고 추가로 적재
-
-(2) 테이블간 겹치는 부분 확인해서 중복없이 한 테이블로 합치기 
-CREATE TABLE T005930 AS SELECT * FROM T005930_20201009;
-CREATE TABLE T252670 AS SELECT * FROM T252670_20201009;
-CREATE TABLE T019170 AS SELECT * FROM T019170_20201009;
-CREATE TABLE T122630 AS SELECT * FROM T122630_20201009;
 
 
-*/
+$$$ Do - 토요일 밤에 집에서 돌려놓기 
+$$$ Do - 일요일 저녁에 집에서 확인하기  
+### 201010 데이터 2차 수집 - 1000~4000 page 
 
 
+$$$ Do - 일요일에 회사에서 돌려놓기 
+$$$ Do - 일요일에 집에서 저녁에 확인하기 
+### 201010 모델 제일 결과 좋았던 걸로 학습시켜서 저장하기 
+# part2_bert감정분석_모델학습및저장
 
-/* KODEX 200선물인버스2X */
-https://finance.naver.com/item/board.nhn?code=252670&page=10900
-https://finance.naver.com/item/board.nhn?code=252670&page=15900 $$$ (1)
-https://finance.naver.com/item/board.nhn?code=252670&page=20900 $$$ (2)
-/*SELECT MIN(DATE), MAX(DATE) FROM T252670;*/ /*2020.04.29 00:00 ~ 2020.10.10 12:23*/
-/* 2020.04.28 10:10 이전 수집 필요 */
-/*SELECT MIN(DATE), MAX(DATE) FROM T252670_20201009;*/  /*2020.09.18 09:14 2020.10.10 12:23*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T252670_20201010;*/  /*2020.07.21 08:08 2020.09.23 17:36*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T252670_20201011;*/  /*2020.04.28 10:10 2020.08.11 12:33*/
-
-/* 삼성전자 */
-https://finance.naver.com/item/board.nhn?code=005930&page=10800
-https://finance.naver.com/item/board.nhn?code=005930&page=15800 $$$ (1) 
-https://finance.naver.com/item/board.nhn?code=005930&page=21800 $$$ (2)
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930;*/ /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
-/* 2020.04.04 09:29 이전 수집 필요 */
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201009;*/  /*2020.09.14 14:16 2020.10.10 16:07*/ 
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201010;*/  /*2020.07.06 16:57 2020.09.18 03:08*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201011;*/  /*2020.04.04 09:29 2020.09.18 03:11*/
-
-/* 신풍제약 */
-https://finance.naver.com/item/board.nhn?code=019170&page=11300  다음번
-https://finance.naver.com/item/board.nhn?code=019170&page=25000  다음번 
-/*SELECT MIN(DATE), MAX(DATE) FROM T019170*/ /*2020.07.28 00:00 ~ 2020.10.10 16:18*/
-/* 2020.07.27 19:54 이전 수집 필요 */
-/*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201009;*/  /*2020.09.28 13:37 2020.10.10 16:18*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201010;*/  /*2020.09.09 09:27 2020.10.02 13:29*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201011;*/  /*2020.07.27 19:54 2020.09.09 10:37*/
-
-
-
-/* CMG제약 */
-https://finance.naver.com/item/board.nhn?code=058820&page=1
-https://finance.naver.com/item/board.nhn?code=058820&page=4082  다다음번
-/*SELECT MIN(DATE), MAX(DATE) FROM T058820;*/ /* */            
-
-
-
-/* 녹십자 */
-/* 전기간 수집완료 */
-https://finance.naver.com/item/board.nhn?code=006280&page=1
-https://finance.naver.com/item/board.nhn?code=006280&page=3000
-/*SELECT MIN(DATE), MAX(DATE) FROM T006280_20201107;*/  /*2017.06.08 14:16 2020.11.07 19:51*/
-
-/* KODEX 레버리지 */
-/* 전기간 수집완료 */
-https://finance.naver.com/item/board.nhn?code=122630&page=1
-/*SELECT MIN(DATE), MAX(DATE) FROM T122630;*/ /*2017.06.07 07:55 ~ 2020.10.10 07:40*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T122630_20201009;*/  /*2020.05.24 04:13 2020.10.10 07:40*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T122630_20201010;*/  /*2018.12.02 19:11 2020.06.24 17:13*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T122630_20201011;*/  /*2017.06.07 07:55 2018.12.03 20:39*/
-
-
-# 로그 1
-
-SELECT STR_TO_DATE('2020090100','%Y%m%d%H');
-SELECT COUNT(*) FROM T005930_20201009 WHERE DATE < '2020.09.15 00:00';
-
-DELETE FROM T005930 WHERE DATE < '2020.09.15 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.09.15 00:06 ~ 2020.10.10 16:07*/
-
-INSERT INTO T005930 SELECT * FROM T005930_20201010 WHERE DATE < '2020.09.15 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.06 16:57 ~ 2020.10.10 16:07*/
-
-DELETE FROM T005930 WHERE DATE < '2020.07.07 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.07 00:03 ~ 2020.10.10 16:07*/
-
-INSERT INTO T005930 SELECT * FROM T005930_20201011 WHERE DATE < '2020.07.07 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.04 09:29 ~ 2020.10.10 16:07*/
-
-DELETE FROM T005930 WHERE DATE < '2020.04.05 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
-
-
-# 로그2
-
-DELETE FROM T252670 WHERE DATE < '2020.09.19 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T252670; /*2020.09.19 00:00 ~ 2020.10.10 12:23*/
-
-INSERT INTO T252670 SELECT * FROM T252670_20201010 WHERE DATE < '2020.09.19 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T252670; /*2020.07.21 08:08 ~ 2020.10.10 12:23*/
-
-DELETE FROM T252670 WHERE DATE < '2020.07.22 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T252670; /*2020.07.22 00:02 ~ 2020.10.10 12:23*/
-
-INSERT INTO T252670 SELECT * FROM T252670_20201011 WHERE DATE < '2020.07.22 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T252670; /*2020.04.28 10:10 ~ 2020.10.10 12:23*/
-
-DELETE FROM T252670 WHERE DATE < '2020.04.29 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T252670; /*2020.04.29 00:00 ~ 2020.10.10 12:23*/
-
-
-# 로그3
-
-DELETE FROM T019170 WHERE DATE < '2020.09.29 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T019170; /*2020.09.29 00:01 ~ 2020.10.10 16:18*/
-
-INSERT INTO T019170 SELECT * FROM T019170_20201010 WHERE DATE < '2020.09.29 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T019170; /*2020.09.09 09:27 ~ 2020.10.10 16:18*/
-
-DELETE FROM T019170 WHERE DATE < '2020.09.09 09:30';
-SELECT MIN(DATE), MAX(DATE) FROM T019170; /*2020.09.09 09:30 ~ 2020.10.10 16:18*/
-
-INSERT INTO T019170 SELECT * FROM T019170_20201011 WHERE DATE < '2020.09.09 09:30';
-SELECT MIN(DATE), MAX(DATE) FROM T019170; /*2020.07.27 19:54 ~ 2020.10.10 16:18*/
-
-DELETE FROM T019170 WHERE DATE < '2020.07.28 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T019170 /*2020.07.28 00:00 ~ 2020.10.10 16:18*/
-
-
-# 로그4
-
-
-DELETE FROM T122630 WHERE DATE < '2020.05.25 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T122630; /*2020.05.25 00:12 ~ 2020.10.10 07:40*/
-
-INSERT INTO T122630 SELECT * FROM T122630_20201010 WHERE DATE < '2020.05.25 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T122630; /*2018.12.02 19:11 ~ 2020.10.10 07:40*/
-
-DELETE FROM T122630 WHERE DATE < '2018.12.02 20:00';
-SELECT MIN(DATE), MAX(DATE) FROM T122630; /*2018.12.02 21:20 ~ 2020.10.10 07:40*/
-
-INSERT INTO T122630 SELECT * FROM T122630_20201011 WHERE DATE < '2018.12.02 20:00';
-SELECT MIN(DATE), MAX(DATE) FROM T122630; /*2017.06.07 07:55 ~ 2020.10.10 07:40*/
-
-
-
-
-$$$ Do - 집에서 돌려놓기 
-$$$ Do - 저녁에 집에서 확인하기  
-### 201010 데이터 3차 수집 - 4000~7000 page 
 
 
 
@@ -275,12 +141,44 @@ SELECT * FROM T019170_20201009 ORDER BY DATE desc;
 
 
 
+### 201010
+	## 발표 컨셉 
+	소문에 사서 뉴스에 판다. 
+	뉴스를 분석하면 이미 늦는다 
+	소문을 분석해라!!! 
 
-### 201010 데이터 2차 수집 - 1000~4000 page 
+	소문에 해당하는
+	소문지수 
 
-### 201010 모델 제일 결과 좋았던 걸로 학습시켜서 저장하기 
-# part2_bert감정분석_모델학습및저장
-	
+	이오 플로우 
+
+	>>>>> 여러 종목 돌리다 보면... 분명히 소문지수가 주가보다 먼저 튀는 종목이 있을 것임
+	>>>>> 발표 용으로는 제격
+
+	# 발표 컨셉  
+	알라딘 - 진흙속의 진주 
+	뻘(진흙)글 속에서 통계적으로 숨겨진 진짜배기 소문을 찾다
+
+	# 발표 컨셉   
+	BERT 정확도 학습시 test set에 대하여 90몇 프로 나온걸로 정확도 높아 정확한 척
+	현혹 가능. 
+
+
+### 200910
+
+	결정한 부분 
+	- 개발 환경 : 구글 Colab 및 Github (https://github.com/head4ths/CEI/)) 사용 
+	- 데이터 저장 : 개인 NAS 서버에 Maria DB (스크래핑 데이터, 개인매수동향, 주가데이터 보관) (http://121.128.223.185:3307)  cei / Mrs너구리1!  : 개인 PC 라 IP 바뀔수도 ??? 프로젝트 기간이 짧아서 별 상관없을 듯 )
+	- 모델 중간 저장 : ??? 구글 드라이브 ???
+
+	Todo 크게 네 부분 
+	( 1,2,3,4 가 순차적이라 프로토타입 만들어보는 단계에서는 전원 참여 식으로 운영 ) 
+	( 프로토타입으로 검증되면 개선은 각자 담당 영역 맡아서 진행 )
+	- (1) 스크래핑 및 전처리 후 DB화 저장 
+	- (2) BERT 감정분석 ( 네이버 무비 영화 감성 분석 - 전이학습 모델 사용 ) 후 태그 달기
+	- (3) 개인매수동향 ( 코스콤 등에서 다운로드 ) 이나 주가데이터와 상관관계 분석 - 사회공학적인 인사이트 필요
+	- (4) 발표
+		
 	
 ### 201003 040 일자별 인덱스 만들기 
 
