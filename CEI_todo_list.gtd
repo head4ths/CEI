@@ -2,8 +2,6 @@
 
 
 
-
-
 $$$ 
 ### 201010 part3_모델불러와서_Classification수행.ipynb 
 ## part3_모델불러와서_Classification수행 
@@ -78,6 +76,13 @@ $$$
 
 
 
+### 201110 압축 
+	(1) ROW_FORMAT=COMPRESSED
+	(2) 엔진 = ARCHIVE
+
+	ALTER TABLE 'T005930_B'	ROW_FORMAT=COMPRESSED;
+	??? ALTER TABLE T006280_B PAGE_COMPRESSED=1;
+	HeidiSQL 에서 기본으로 지원함 
 
 
 ### 201110 MariaDB 압축 옵션 (PASS : 필요없음)
