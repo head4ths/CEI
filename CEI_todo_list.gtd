@@ -1,13 +1,5 @@
-/*
-## 깃허브
-https://github.com/head4ths/CEI
 
-# 깃허브 폴더
-/data                    데이터 파일 넣는 곳
-/model                   모델 넣는 곳
-/etc_reference_html      참고용 html 넣는 곳
-/etc_reference_source    참고용 소스 넣는 곳
-*/
+
 
 
 
@@ -15,38 +7,6 @@ $$$ 정리하고 테이블 Drop
 ### 201110 데이터 수집 현황
 
 
-
-# 로그 1
-
-SELECT STR_TO_DATE('2020090100','%Y%m%d%H');
-SELECT COUNT(*) FROM T005930_20201009 WHERE DATE < '2020.09.15 00:00';
-
-DELETE FROM T005930 WHERE DATE < '2020.09.15 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.09.15 00:06 ~ 2020.10.10 16:07*/
-
-INSERT INTO T005930 SELECT * FROM T005930_20201010 WHERE DATE < '2020.09.15 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.06 16:57 ~ 2020.10.10 16:07*/
-
-DELETE FROM T005930 WHERE DATE < '2020.07.07 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.07 00:03 ~ 2020.10.10 16:07*/
-
-INSERT INTO T005930 SELECT * FROM T005930_20201011 WHERE DATE < '2020.07.07 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.04 09:29 ~ 2020.10.10 16:07*/
-
-DELETE FROM T005930 WHERE DATE < '2020.04.05 00:00';
-SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
-
-
-/* 삼성전자 */
-https://finance.naver.com/item/board.nhn?code=005930&page=10800
-https://finance.naver.com/item/board.nhn?code=005930&page=15800 $$$ (1) 
-https://finance.naver.com/item/board.nhn?code=005930&page=21800 $$$ (2)
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930;*/ /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
-/* 2020.04.04 09:29 이전 수집 필요 */
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201009;*/  /*2020.09.14 14:16 2020.10.10 16:07*/ 
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201010;*/  /*2020.07.06 16:57 2020.09.18 03:08*/
-/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201011;*/  /*2020.04.04 09:29 2020.09.18 03:11*/
-SELECT MIN(DATE), MAX(DATE) FROM T005930_20201107_B;   /*2019.12.09 15:08 2020.07.28 03:34*/
 
 
 /* 신풍제약 */
@@ -74,7 +34,6 @@ SELECT MIN(DATE), MAX(DATE) FROM T252670_20201107_B;   /*2019.12.17 10:09 2020.0
 
 
 
-
 -------------------
 
 /* 녹십자 */ /* 전기간 수집완료 */
@@ -98,20 +57,17 @@ SELECT MIN(DATE), MAX(DATE) FROM T122630;  /*2017.06.07 07:55 ~ 2020.10.10 07:40
 SELECT COUNT(*) FROM T122630; /*171048 59MB*/
 SELECT * FROM T122630 LIMIT 10; 
 
+/* 삼성전자 */ /* 2020 수집완료 */
+https://finance.naver.com/item/board.nhn?code=005930&page=1
+https://finance.naver.com/item/board.nhn?code=005930&page=21800
+SELECT MIN(DATE), MAX(DATE) FROM T005930;  /* 2019.12.09 15:08 2020.10.10 16:07 */
+SELECT COUNT(*) FROM T005930; /*415828 175MB*/
+SELECT * FROM T005930 LIMIT 10; 
 
 
 
-
-$$$ Do - 토요일 밤에 집에서 돌려놓기 
-$$$ Do - 일요일 저녁에 집에서 확인하기  
-### 201010 데이터 2차 수집 - 1000~4000 page 
-
-
-$$$ Do - 일요일에 회사에서 돌려놓기 
-$$$ Do - 일요일에 집에서 저녁에 확인하기 
-### 201010 모델 제일 결과 좋았던 걸로 학습시켜서 저장하기 
-# part2_bert감정분석_모델학습및저장
-
+$$$
+### 20201110 테이블 백업 해놓기 
 
 
 
@@ -122,7 +78,7 @@ $$$
 # (1) dataframe 불러오기 
 * mariaDB 에 저장된 것 가져와서 감정분석
 : 저장된 데이터 dataframe 으로 불러와서 감정분석해서 건별로 태그 달기 
-: 태그 단 것 DB에 저장하기 
+: 태그 단 것 DB에 저장하기 (컬럼 1개 추가) 
 
 
 # (2) 모델 불러오기 ( 불러온 걸로 시연 해보기 )
@@ -186,6 +142,64 @@ $$$
 =====================================================================================================================
 (완료)
 
+
+### 201110 
+
+/* 삼성전자 */
+https://finance.naver.com/item/board.nhn?code=005930&page=10800
+https://finance.naver.com/item/board.nhn?code=005930&page=15800 $$$ (1) 
+https://finance.naver.com/item/board.nhn?code=005930&page=21800 $$$ (2)
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930;*/ /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
+/* 2020.04.04 09:29 이전 수집 필요 */
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201009;*/  /*2020.09.14 14:16 2020.10.10 16:07*/ 
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201010;*/  /*2020.07.06 16:57 2020.09.18 03:08*/
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201011;*/  /*2020.04.04 09:29 2020.09.18 03:11*/
+SELECT MIN(DATE), MAX(DATE) FROM T005930_20201107_B;   /*2019.12.09 15:08 2020.07.28 03:34*/
+
+
+# 로그 1
+
+SELECT STR_TO_DATE('2020090100','%Y%m%d%H');
+SELECT COUNT(*) FROM T005930_20201009 WHERE DATE < '2020.09.15 00:00';
+
+DELETE FROM T005930 WHERE DATE < '2020.09.15 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.09.15 00:06 ~ 2020.10.10 16:07*/
+
+INSERT INTO T005930 SELECT * FROM T005930_20201010 WHERE DATE < '2020.09.15 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.06 16:57 ~ 2020.10.10 16:07*/
+
+DELETE FROM T005930 WHERE DATE < '2020.07.07 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.07 00:03 ~ 2020.10.10 16:07*/
+
+INSERT INTO T005930 SELECT * FROM T005930_20201011 WHERE DATE < '2020.07.07 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.04 09:29 ~ 2020.10.10 16:07*/
+
+DELETE FROM T005930 WHERE DATE < '2020.04.05 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
+
+INSERT INTO T005930 SELECT * FROM T005930_20201107_B WHERE DATE < '2020.04.05 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2019.12.09 15:08 2020.10.10 16:07*/
+
+### 201010 데이터 2차 수집 - 1000~4000 page 
+토요일 밤에 집에서 돌려놓기 
+일요일 저녁에 집에서 확인하기  
+
+
+### 201010 모델 제일 결과 좋았던 걸로 학습시켜서 저장하기 
+# part2_bert감정분석_모델학습및저장
+일요일에 회사에서 돌려놓기 
+일요일에 집에서 저녁에 확인하기 
+
+
+### 201110 깃허브 
+## 깃허브
+https://github.com/head4ths/CEI
+
+# 깃허브 폴더
+/data                    데이터 파일 넣는 곳
+/model                   모델 넣는 곳
+/etc_reference_html      참고용 html 넣는 곳
+/etc_reference_source    참고용 소스 넣는 곳
 
 
 ### 201109 데이터 수집 현황
