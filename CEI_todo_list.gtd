@@ -11,6 +11,96 @@ https://github.com/head4ths/CEI
 
 
 
+$$$ 정리하고 테이블 Drop 
+### 201110 데이터 수집 현황
+
+
+
+# 로그 1
+
+SELECT STR_TO_DATE('2020090100','%Y%m%d%H');
+SELECT COUNT(*) FROM T005930_20201009 WHERE DATE < '2020.09.15 00:00';
+
+DELETE FROM T005930 WHERE DATE < '2020.09.15 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.09.15 00:06 ~ 2020.10.10 16:07*/
+
+INSERT INTO T005930 SELECT * FROM T005930_20201010 WHERE DATE < '2020.09.15 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.06 16:57 ~ 2020.10.10 16:07*/
+
+DELETE FROM T005930 WHERE DATE < '2020.07.07 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.07.07 00:03 ~ 2020.10.10 16:07*/
+
+INSERT INTO T005930 SELECT * FROM T005930_20201011 WHERE DATE < '2020.07.07 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.04 09:29 ~ 2020.10.10 16:07*/
+
+DELETE FROM T005930 WHERE DATE < '2020.04.05 00:00';
+SELECT MIN(DATE), MAX(DATE) FROM T005930; /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
+
+
+/* 삼성전자 */
+https://finance.naver.com/item/board.nhn?code=005930&page=10800
+https://finance.naver.com/item/board.nhn?code=005930&page=15800 $$$ (1) 
+https://finance.naver.com/item/board.nhn?code=005930&page=21800 $$$ (2)
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930;*/ /*2020.04.05 00:00 ~ 2020.10.10 16:07*/
+/* 2020.04.04 09:29 이전 수집 필요 */
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201009;*/  /*2020.09.14 14:16 2020.10.10 16:07*/ 
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201010;*/  /*2020.07.06 16:57 2020.09.18 03:08*/
+/*SELECT MIN(DATE), MAX(DATE) FROM T005930_20201011;*/  /*2020.04.04 09:29 2020.09.18 03:11*/
+SELECT MIN(DATE), MAX(DATE) FROM T005930_20201107_B;   /*2019.12.09 15:08 2020.07.28 03:34*/
+
+
+/* 신풍제약 */
+https://finance.naver.com/item/board.nhn?code=019170&page=11300  다음번
+https://finance.naver.com/item/board.nhn?code=019170&page=25000  다음번 
+/*SELECT MIN(DATE), MAX(DATE) FROM T019170*/ /*2020.07.28 00:00 ~ 2020.10.10 16:18*/
+/* 2020.07.27 19:54 이전 수집 필요 */
+/*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201009;*/  /*2020.09.28 13:37 2020.10.10 16:18*/
+/*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201010;*/  /*2020.09.09 09:27 2020.10.02 13:29*/
+/*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201011;*/  /*2020.07.27 19:54 2020.09.09 10:37*/
+SELECT MIN(DATE), MAX(DATE) FROM T019170_20201107_B;   /*2018.10.01 21:23 2020.10.20 22:32*/
+
+
+
+/* KODEX 200선물인버스2X */ /* 수집완료 */
+https://finance.naver.com/item/board.nhn?code=252670&page=1
+https://finance.naver.com/item/board.nhn?code=252670&page=20900 
+/*SELECT MIN(DATE), MAX(DATE) FROM T252670;*/ /*2020.04.29 00:00 ~ 2020.10.10 12:23*/
+/* 2020.04.28 10:10 이전 수집 필요 */
+/*SELECT MIN(DATE), MAX(DATE) FROM T252670_20201009;*/  /*2020.09.18 09:14 2020.10.10 12:23*/
+/*SELECT MIN(DATE), MAX(DATE) FROM T252670_20201010;*/  /*2020.07.21 08:08 2020.09.23 17:36*/
+/*SELECT MIN(DATE), MAX(DATE) FROM T252670_20201011;*/  /*2020.04.28 10:10 2020.08.11 12:33*/
+SELECT MIN(DATE), MAX(DATE) FROM T252670_20201107_B;   /*2019.12.17 10:09 2020.04.29 11:07*/
+
+
+
+
+
+-------------------
+
+/* 녹십자 */ /* 전기간 수집완료 */
+https://finance.naver.com/item/board.nhn?code=006280&page=1
+https://finance.naver.com/item/board.nhn?code=006280&page=2138
+SELECT MIN(DATE), MAX(DATE) FROM T006280;  /*2017.06.08 14:16 2020.11.07 19:51*/
+SELECT COUNT(*) FROM T006280; /*59933 28MB*/
+SELECT * FROM T006280 LIMIT 10; 
+
+/* CMG제약 */ /* 전기간 수집완료 */
+https://finance.naver.com/item/board.nhn?code=058820&page=1
+https://finance.naver.com/item/board.nhn?code=058820&page=4086  
+SELECT MIN(DATE), MAX(DATE) FROM T058820;  /*2017.06.07 04:49 2020.11.08 16:54*/
+SELECT COUNT(*) FROM T058820; /*81848 30MB*/
+SELECT * FROM T058820 LIMIT 10; 
+
+/* KODEX 레버리지 */ /* 전기간 수집완료 */
+https://finance.naver.com/item/board.nhn?code=122630&page=1
+https://finance.naver.com/item/board.nhn?code=122630&page=4506
+SELECT MIN(DATE), MAX(DATE) FROM T122630;  /*2017.06.07 07:55 ~ 2020.10.10 07:40*/
+SELECT COUNT(*) FROM T122630; /*171048 59MB*/
+SELECT * FROM T122630 LIMIT 10; 
+
+
+
+
 
 $$$ Do - 토요일 밤에 집에서 돌려놓기 
 $$$ Do - 일요일 저녁에 집에서 확인하기  
@@ -91,7 +181,14 @@ $$$
 
 
 
-### 201110 데이터 수집 현황
+
+
+=====================================================================================================================
+(완료)
+
+
+
+### 201109 데이터 수집 현황
 
 
 /* 녹십자 */
@@ -107,6 +204,11 @@ https://finance.naver.com/item/board.nhn?code=122630&page=1
 /*SELECT MIN(DATE), MAX(DATE) FROM T122630_20201009;*/  /*2020.05.24 04:13 2020.10.10 07:40*/
 /*SELECT MIN(DATE), MAX(DATE) FROM T122630_20201010;*/  /*2018.12.02 19:11 2020.06.24 17:13*/
 /*SELECT MIN(DATE), MAX(DATE) FROM T122630_20201011;*/  /*2017.06.07 07:55 2018.12.03 20:39*/
+
+/* CMG제약 */
+https://finance.naver.com/item/board.nhn?code=058820&page=1
+https://finance.naver.com/item/board.nhn?code=058820&page=4082  다다음번
+/*SELECT MIN(DATE), MAX(DATE) FROM T058820;*/ /* */            
 
 
 
@@ -138,17 +240,6 @@ https://finance.naver.com/item/board.nhn?code=019170&page=25000  다음번
 /*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201009;*/  /*2020.09.28 13:37 2020.10.10 16:18*/
 /*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201010;*/  /*2020.09.09 09:27 2020.10.02 13:29*/
 /*SELECT MIN(DATE), MAX(DATE) FROM T019170_20201011;*/  /*2020.07.27 19:54 2020.09.09 10:37*/
-
-/* CMG제약 */
-https://finance.naver.com/item/board.nhn?code=058820&page=1
-https://finance.naver.com/item/board.nhn?code=058820&page=4082  다다음번
-/*SELECT MIN(DATE), MAX(DATE) FROM T058820;*/ /* */            
-
-
-
-
-=====================================================================================================================
-(완료)
 
 
 
