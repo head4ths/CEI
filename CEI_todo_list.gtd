@@ -1,61 +1,35 @@
 
-$$$ Do - 캡쳐 해서 PPT로 만들고 
-### 201010 part4_일별인덱스생성_감성_갯수 - 050 정리해서 6개 종목다 별도 테이블로 만들기 
-# 일별 글 건수 인덱스 만들기 - DB작업 : CNT
-# 일별 감정 지수 인덱스 만들기 : EMO_I
-# 일별 글 건수 인덱스 만들기 - DB작업   R_CNT  
-# 일별 감정 지수 인덱스 만들기 - DB작업 R_EMO_I
 
-# 일별 글 건수 인덱스  : CNT 
-# 일별 감정 지수 인덱스  : EMO_I
-# EMO_RT : 감정지수 비율 인덱스
-
-# 일별 글 건수 인덱스   R_CNT  (추천 수 1 이상이고 추천이 더 많은 것 중)
-# 일별 감정 지수 인덱스 R_EMO_I (추천 수 1 이상이고 추천이 더 많은 것 중)
-# R_EMO_RT : 감정지수 비율 인덱스  (추천 수 1 이상이고 추천이 더 많은 것 중)
-
-
-
-WITH V1 AS 
-( SELECT 
-SUBSTR(DATE,1,10) AS BAS_DT
-, DATE_FORMAT(DATE_FORMAT(DATE,'%Y.%m.%d %H:%i')- INTERVAL 30 MINUTE - INTERVAL 8 HOUR,'%Y%m%d') AS NEW_BAS_DT
-, CASE WHEN A.`LIKE` >= 1 AND `LIKE` > `DISLIKE` THEN 1 ELSE 0 END AS LIKE_I
-, A.* 
-FROM T058820_label A
-) 
-SELECT NEW_BAS_DT
-, COUNT(*) AS CNT
-, SUM(label) AS  EMO_I
-, NVL(SUM(label) / COUNT(*),0) AS EMO_RT
-, SUM(LIKE_I) AS  R_CNT
-, SUM(LIKE_I*label) AS  R_EMO_I
-, NVL(SUM(LIKE_I*label) / SUM(LIKE_I) ,0) AS EMO_RT
-FROM V1
-GROUP BY NEW_BAS_DT
-HAVING NEW_BAS_DT BETWEEN '20200101' AND '20201009'
-ORDER BY NEW_BAS_DT 
 
 
 $$$
-### 201010 part4_일별인덱스생성_감성_갯수 - 060
+### 201115 part4_일별인덱스생성_감성_갯수 - 060
 # 엑셀로 인덱스들 그래프 그려보기
 
 
-$$$
-### 201111 작업한 부분까지 설명 PPT 만들어서 공유
-C:\Users\user\Desktop\# 졸프 PPT\# PPT
-미래에셋_프로젝트설계및구현(5조)_중간진행공유_20201111.pptx
+/*
+*/
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T005930_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T006280_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T019170_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T058820_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T122630_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T252670_index ORDER BY NEW_BAS_DT;
 
-
---------------------
-
+INSERT INTO T006280_index
+SELECT '20200104',0,0,0,0,0,0 ;
 
 $$$
 ### 201010 part5_일자별 주가, 일자별 거래량 가져오기
+: 주가
+: 거래량 
+: 상승/하락 구분 
+: 상승/하락 수치 
 # 네이버 ???
 # 거래소 ???
 # 회사데이터 ???
+
+
 
 
 --------------------
@@ -122,6 +96,102 @@ $$$
 =====================================================================================================================
 (완료)
 
+
+
+### 201115 part4_일별인덱스생성_감성_갯수 - 050 정리해서 6개 종목다 별도 테이블로 만들기 
+# 일별 글 건수 인덱스 만들기 - DB작업 : CNT
+# 일별 감정 지수 인덱스 만들기 : EMO_I
+# 일별 글 건수 인덱스 만들기 - DB작업   R_CNT  
+# 일별 감정 지수 인덱스 만들기 - DB작업 R_EMO_I
+
+# 일별 글 건수 인덱스  : CNT 
+# 일별 감정 지수 인덱스  : EMO_I
+# EMO_RT : 감정지수 비율 인덱스
+
+# 일별 글 건수 인덱스   R_CNT  (추천 수 1 이상이고 추천이 더 많은 것 중)
+# 일별 감정 지수 인덱스 R_EMO_I (추천 수 1 이상이고 추천이 더 많은 것 중)
+# R_EMO_RT : 감정지수 비율 인덱스  (추천 수 1 이상이고 추천이 더 많은 것 중)
+
+
+CREATE TABLE T006280_index AS 
+WITH V1 AS 
+( SELECT 
+SUBSTR(DATE,1,10) AS BAS_DT
+, DATE_FORMAT(DATE_FORMAT(DATE,'%Y.%m.%d %H:%i')- INTERVAL 30 MINUTE - INTERVAL 8 HOUR,'%Y%m%d') AS NEW_BAS_DT
+, CASE WHEN A.`LIKE` >= 1 AND `LIKE` > `DISLIKE` THEN 1 ELSE 0 END AS LIKE_I
+, A.* 
+FROM T006280_label A
+) 
+SELECT NEW_BAS_DT
+, COUNT(*) AS CNT
+, SUM(label) AS  EMO_I
+, CASE WHEN COUNT(*) = 0 THEN 0 ELSE NVL(SUM(label) / COUNT(*),0) END AS EMO_RT
+, SUM(LIKE_I) AS  R_CNT
+, SUM(LIKE_I*label) AS  R_EMO_I
+, CASE WHEN SUM(LIKE_I) = 0 THEN 0 ELSE NVL(SUM(LIKE_I*label) / SUM(LIKE_I) ,0) END AS R_EMO_RT
+FROM V1
+GROUP BY NEW_BAS_DT
+HAVING NEW_BAS_DT BETWEEN '20200101' AND '20201009'
+ORDER BY NEW_BAS_DT 
+
+
+
+
+
+### 201115 part4_일별인덱스생성_감성_갯수 - 060
+# 엑셀로 인덱스들 그래프 그려보기
+
+/*
+*/
+SELECT COUNT(*) FROM T005930_index UNION ALL /* 283 */
+SELECT COUNT(*) FROM T006280_index UNION ALL /* 281 */
+SELECT COUNT(*) FROM T019170_index UNION ALL /* 283 */
+SELECT COUNT(*) FROM T058820_index UNION ALL /* 283 */
+SELECT COUNT(*) FROM T122630_index UNION ALL /* 283 */
+SELECT COUNT(*) FROM T252670_index ;         /* 283 */
+
+	/* 삼성전자 */ /* 2020 수집완료 */
+	SELECT MIN(DATE), MAX(DATE) FROM T005930;  /* 2019.12.09 15:08 2020.10.10 16:07 */
+	SELECT COUNT(*) FROM T005930; /*415828 175MB*/
+
+	/* 녹십자 */ /* 전기간 수집완료 */
+	SELECT MIN(DATE), MAX(DATE) FROM T006280;  /*2017.06.08 14:16 2020.11.07 19:51*/
+	SELECT COUNT(*) FROM T006280; /*59933 28MB*/
+
+	/* CMG제약 */ /* 전기간 수집완료 */
+	SELECT MIN(DATE), MAX(DATE) FROM T058820;  /*2017.06.07 04:49 2020.11.08 16:54*/
+	SELECT COUNT(*) FROM T058820; /*81848 30MB*/
+
+	/* KODEX 레버리지 */ /* 전기간 수집완료 */
+	SELECT MIN(DATE), MAX(DATE) FROM T122630;  /*2017.06.07 07:55 ~ 2020.10.10 07:40*/
+	SELECT COUNT(*) FROM T122630; /*171048 59MB*/
+
+	/* KODEX 200선물인버스2X */ /* 2020 수집완료 */
+	SELECT MIN(DATE), MAX(DATE) FROM T252670;  /* 2019.12.17 10:09 2020.10.10 12:23 */
+	SELECT COUNT(*) FROM T252670; /*339407 135MB*/
+
+	/* 신풍제약 */ /* 2020 수집완료 */
+	SELECT MIN(DATE), MAX(DATE) FROM T019170;  /* 2018.10.01 21:23 2020.10.10 16:18 */
+	SELECT COUNT(*) FROM T019170; /*469022 186MB*/
+
+
+### 201115 작업한 부분까지 설명 PPT 만들어서 공유
+C:\Users\user\Desktop\# 졸프 PPT\# PPT
+미래에셋_프로젝트설계및구현(5조)_중간진행공유_20201111.pptx
+
+### 201010 part4_일별인덱스생성_감성_갯수 - 050 정리해서 6개 종목다 별도 테이블로 만들기  - 캡쳐 해서 PPT로 만들고 공유
+# 일별 글 건수 인덱스 만들기 - DB작업 : CNT
+# 일별 감정 지수 인덱스 만들기 : EMO_I
+# 일별 글 건수 인덱스 만들기 - DB작업   R_CNT  
+# 일별 감정 지수 인덱스 만들기 - DB작업 R_EMO_I
+
+# 일별 글 건수 인덱스  : CNT 
+# 일별 감정 지수 인덱스  : EMO_I
+# EMO_RT : 감정지수 비율 인덱스
+
+# 일별 글 건수 인덱스   R_CNT  (추천 수 1 이상이고 추천이 더 많은 것 중)
+# 일별 감정 지수 인덱스 R_EMO_I (추천 수 1 이상이고 추천이 더 많은 것 중)
+# R_EMO_RT : 감정지수 비율 인덱스  (추천 수 1 이상이고 추천이 더 많은 것 중)
 
 
 ### 666 추천수 반영한 데이터셋 사용 - 상관관계 분석
