@@ -2,25 +2,10 @@
 
 
 
+
 $$$
-### 201115 part4_일별인덱스생성_감성_갯수 - 060
-# 엑셀로 인덱스들 그래프 그려보기
-
-
+### 201115 part5_일자별 주가, 일자별 거래량 가져오기
 /*
-*/
-SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T005930_index ORDER BY NEW_BAS_DT;
-SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T006280_index ORDER BY NEW_BAS_DT;
-SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T019170_index ORDER BY NEW_BAS_DT;
-SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T058820_index ORDER BY NEW_BAS_DT;
-SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T122630_index ORDER BY NEW_BAS_DT;
-SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T252670_index ORDER BY NEW_BAS_DT;
-
-INSERT INTO T006280_index
-SELECT '20200104',0,0,0,0,0,0 ;
-
-$$$
-### 201010 part5_일자별 주가, 일자별 거래량 가져오기
 : 주가
 : 거래량 
 : 상승/하락 구분 
@@ -28,6 +13,13 @@ $$$
 # 네이버 ???
 # 거래소 ???
 # 회사데이터 ???
+*/
+# 네이버 일별시세 스크래핑 하기 
+
+
+
+$$$
+### 201115 part5_일자별 주가, 일자별 거래량 가져오기 - 엑셀에 추가 
 
 
 
@@ -97,6 +89,22 @@ $$$
 (완료)
 
 
+
+### 201115 part4_일별인덱스생성_감성_갯수 - 060
+# 엑셀로 인덱스들 그래프 그려보기
+
+
+/*
+*/
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T005930_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T006280_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T019170_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T058820_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T122630_index ORDER BY NEW_BAS_DT;
+SELECT CNT,EMO_I,EMO_RT,R_CNT,R_EMO_I,R_EMO_RT FROM T252670_index ORDER BY NEW_BAS_DT;
+
+INSERT INTO T006280_index
+SELECT '20200104',0,0,0,0,0,0 ;
 
 ### 201115 part4_일별인덱스생성_감성_갯수 - 050 정리해서 6개 종목다 별도 테이블로 만들기 
 # 일별 글 건수 인덱스 만들기 - DB작업 : CNT
